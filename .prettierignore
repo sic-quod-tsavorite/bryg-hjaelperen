@@ -1,0 +1,14 @@
+node_modules/
+dist/
+web-build/
+.expo/
+ios/
+android/
+expo-env.d.ts
+*.tsbuildinfo
+bun.lock
+package-lock.json
+yarn.lock
+*.png
+*.jpg
+*.svg
