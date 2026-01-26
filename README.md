@@ -8,10 +8,10 @@ A cross-platform brewing helper app for homebrewers. Plan your brew with live ca
 
 ### Opsætning (Setup Tab)
 
-- **Beer Style Selection** — Choose from 16 beer styles with typical parameter ranges
-- **Malt Management** — Autocomplete with 24 predefined malts, EBC suggestions, percentage calculations
-- **Hop Management** — Autocomplete with 24 predefined hops, alpha acid suggestions, per-hop IBU contribution
-- **Miscellaneous Ingredients** — 16 predefined items (Irish Moss, lactose, spices, etc.) with usage info
+- **Beer Style Selection** — Choose beer styles with typical parameter ranges
+- **Malt Management** — Autocomplete with predefined malts, EBC suggestions, percentage calculations
+- **Hop Management** — Autocomplete with predefined hops, alpha acid suggestions, per-hop IBU contribution
+- **Miscellaneous Ingredients** — predefined items (Irish Moss, lactose, spices, etc.) with usage info
 - **Yeast Configuration** — Top/bottom fermenting selection, package count, fermentation temperature
 - **Live Calculations:**
   - Original Gravity (OG) from grain bill and volume
@@ -46,7 +46,7 @@ A cross-platform brewing helper app for homebrewers. Plan your brew with live ca
 
 - [Bun](https://bun.sh/) (v1.0 or later)
 - [Node.js](https://nodejs.org/) (v18 or later, for Expo CLI)
-- For Android development: Android Studio with an emulator or physical device
+- For Android development: Android SDK with an emulator or physical device
 - For iOS development: Xcode (macOS only)
 
 ### Installation
@@ -125,15 +125,3 @@ The app uses industry-standard formulas:
 - **EBC (European Brewery Convention color):** Morey equation converting MCU to SRM, then to EBC
 - **ABV (Alcohol By Volume):** Standard formula: `(OG - FG) × 131.25`
 - **Attenuation:** Percentage of sugars converted: `((OG - FG) / (OG - 1)) × 100`
-
-## Contributing
-
-Contributions are welcome! Please ensure your code passes all checks before submitting:
-
-```bash
-bun run check
-```
-
-## License
-
-This project is private and not licensed for public use.
