@@ -1,0 +1,200 @@
+[
+  {
+    "id": "irish-moss",
+    "navn": "Irish Moss",
+    "kategori": "klaring",
+    "standardMaengde": 5,
+    "enhed": "g",
+    "tilsaetning": "kog",
+    "tidspunkt": 15,
+    "beskrivelse": "Irish Moss er et naturligt klarningsmiddel udvundet af rød tang (Chondrus crispus). Det hjælper med at binde proteiner og andre partikler, så de bundfældes og giver en klarere øl.",
+    "brug": [
+      {
+        "titel": "Tilsætning i kogningen",
+        "beskrivelse": "Tilsættes de sidste 10–15 minutter af kogningen. Varmen aktiverer carrageenan, som binder til proteiner."
+      },
+      {
+        "titel": "Dosering",
+        "beskrivelse": "Brug ca. 1 teskefuld (5 g) pr. 20 liter. Kan evt. hydreres i lidt vand 15 min før tilsætning."
+      }
+    ],
+    "oeltyper": [
+      "Pilsner og Lager: Hvor klarhed er særligt vigtigt for den visuelle oplevelse.",
+      "Pale Ale og IPA: Giver en pænere præsentation uden at påvirke smagen.",
+      "Alle lyse øl: Hvor man ønsker en krystalklar øl."
+    ],
+    "fordele": [
+      "Naturligt produkt: Udvundet af tang uden kemiske tilsætninger.",
+      "Forbedrer klarhed: Reducerer proteindis markant.",
+      "Ingen smagspåvirkning: Påvirker ikke øllets smag eller aroma."
+    ]
+  },
+  {
+    "id": "whirlfloc",
+    "navn": "Whirlfloc",
+    "kategori": "klaring",
+    "standardMaengde": 1,
+    "enhed": "tablet",
+    "tilsaetning": "kog",
+    "tidspunkt": 15,
+    "beskrivelse": "Tabletform af Irish Moss. Én tablet pr. 20-25 liter. Tilsættes de sidste 15 minutter af kogningen."
+  },
+  {
+    "id": "laktose",
+    "navn": "Laktose",
+    "kategori": "sukker",
+    "standardMaengde": 200,
+    "enhed": "g",
+    "tilsaetning": "kog",
+    "tidspunkt": 10,
+    "beskrivelse": "Laktose, også kendt som mælkesukker, er et ikke-forgærbart sukker, der anvendes i ølbrygning til at tilføje sødme og en cremet mundfølelse uden at øge alkoholprocenten.",
+    "brug": [
+      {
+        "titel": "Tilsætning i kogningen",
+        "beskrivelse": "Laktose tilsættes typisk de sidste 5–15 minutter af kogningen, for at sikre, at den opløses fuldstændigt i urten. Dette er den mest almindelige metode."
+      },
+      {
+        "titel": "Tilsætning ved sekundær gæring",
+        "beskrivelse": "Nogle bryggere vælger at tilsætte laktose efter primær gæring, især hvis de vil justere sødmen efter smag."
+      },
+      {
+        "titel": "Dosering",
+        "beskrivelse": "En almindelig retningslinje er at bruge 100–300 gram laktose pr. 20 liter bryg, afhængigt af den ønskede sødme. For milk stouts anvendes ofte 200–250 gram pr. 20 liter."
+      }
+    ],
+    "oeltyper": [
+      "Milk Stout og Sweet Porter: Laktose skaber den karakteristiske rigtig sødme og cremede konsistens.",
+      "Dessertøl: Bruges til at skabe en sød og tilfredsstillende smagsoplevelse.",
+      "NEIPA'er og mørke øl: Tilføjer blødhed og fylde uden at øge alkoholindholdet."
+    ],
+    "fordele": [
+      "Sødme uden alkohol: Fordi gæren ikke kan fermentere laktose, forbliver den i den færdige øl.",
+      "Forbedrer mundfølelse: Giver en rik, blød og cremet tekstur.",
+      "Fleksibel anvendelse: Kan bruges i alle typer øl, hvor en mere sød og fyldig profil ønskes."
+    ]
+  },
+  {
+    "id": "appelsinskal",
+    "navn": "Appelsinskal",
+    "kategori": "krydderi",
+    "standardMaengde": 20,
+    "enhed": "g",
+    "tilsaetning": "kog",
+    "tidspunkt": 5,
+    "beskrivelse": "Giver citrusnoter til øl. Bruges ofte i witbier og belgiske styles. Tilsættes sent i kogningen for at bevare aromastofferne."
+  },
+  {
+    "id": "koriander",
+    "navn": "Koriander",
+    "kategori": "krydderi",
+    "standardMaengde": 15,
+    "enhed": "g",
+    "tilsaetning": "kog",
+    "tidspunkt": 5,
+    "beskrivelse": "Frø fra korianderplanten. Giver en frisk, citrusagtig og krydret smag. Bruges klassisk i witbier. Knuses let før tilsætning."
+  },
+  {
+    "id": "gaernaering",
+    "navn": "Gærnæringsstof",
+    "kategori": "gæring",
+    "standardMaengde": 5,
+    "enhed": "g",
+    "tilsaetning": "kog",
+    "tidspunkt": 10,
+    "beskrivelse": "Tilsætter nitrogen og mineraler som gæren har brug for. Hjælper med hurtigere og sundere gæring, især ved høj OG eller adjuncts."
+  },
+  {
+    "id": "honning",
+    "navn": "Honning",
+    "kategori": "sukker",
+    "standardMaengde": 250,
+    "enhed": "g",
+    "tilsaetning": "eftergaering",
+    "beskrivelse": "Tilsætter fermenterbart sukker og kan give let honningkarakter. Tilsættes ofte efter primær gæring for at bevare aroma, eller ved flamout."
+  },
+  {
+    "id": "vaniljestang",
+    "navn": "Vaniljestang",
+    "kategori": "krydderi",
+    "standardMaengde": 1,
+    "enhed": "stk",
+    "tilsaetning": "eftergaering",
+    "beskrivelse": "Giver varm vanilje-karakter. Flækkes på langs og lægges i sekundær gæring i 3-7 dage. Bruges i stouts, porters og brown ales."
+  },
+  {
+    "id": "kakaonibs",
+    "navn": "Kakaonibs",
+    "kategori": "krydderi",
+    "standardMaengde": 50,
+    "enhed": "g",
+    "tilsaetning": "eftergaering",
+    "beskrivelse": "Ristede kakaobønner der giver chokoladesmag uden sødme. Lægges i sekundær gæring i 3-7 dage. Populært i stouts."
+  },
+  {
+    "id": "kaffeboenner",
+    "navn": "Kaffebønner",
+    "kategori": "krydderi",
+    "standardMaengde": 30,
+    "enhed": "g",
+    "tilsaetning": "eftergaering",
+    "beskrivelse": "Giver kaffe-aroma og smag. Brug grovmalede bønner i sekundær gæring i 24-48 timer. For meget kontakt giver bitterhed."
+  },
+  {
+    "id": "egetraespaaner",
+    "navn": "Egetræsspåner",
+    "kategori": "modning",
+    "standardMaengde": 30,
+    "enhed": "g",
+    "tilsaetning": "eftergaering",
+    "beskrivelse": "Giver vanillin, tanniner og trænoter som fadlagret øl. Kan være medium eller heavy toast. 2-4 uger i sekundær."
+  },
+  {
+    "id": "ingefaer",
+    "navn": "Frisk Ingefær",
+    "kategori": "krydderi",
+    "standardMaengde": 50,
+    "enhed": "g",
+    "tilsaetning": "kog",
+    "tidspunkt": 10,
+    "beskrivelse": "Giver varm, krydret og let skarp smag. Skrælles og skæres i skiver. Tilsættes sent i kog eller i eftergæring."
+  },
+  {
+    "id": "lavendel",
+    "navn": "Lavendel",
+    "kategori": "krydderi",
+    "standardMaengde": 10,
+    "enhed": "g",
+    "tilsaetning": "kog",
+    "tidspunkt": 5,
+    "beskrivelse": "Blomstrende urte med intens blomsteraroma. Brug sparsomt - det kan hurtigt blive dominerende. Tilsættes ved flamout."
+  },
+  {
+    "id": "stjerneanis",
+    "navn": "Stjerneanis",
+    "kategori": "krydderi",
+    "standardMaengde": 2,
+    "enhed": "stk",
+    "tilsaetning": "kog",
+    "tidspunkt": 10,
+    "beskrivelse": "Giver lakridslignende aroma. Bruges sparsomt i belgiske og julelige øl. 1-2 stjerner pr. 20 liter."
+  },
+  {
+    "id": "kanel",
+    "navn": "Kanelstang",
+    "kategori": "krydderi",
+    "standardMaengde": 1,
+    "enhed": "stk",
+    "tilsaetning": "eftergaering",
+    "beskrivelse": "Giver varm, sød kanel-smag. Bruges i vinter- og juleøl. Tilsættes i sekundær gæring i 3-7 dage."
+  },
+  {
+    "id": "peber",
+    "navn": "Peberkorn",
+    "kategori": "krydderi",
+    "standardMaengde": 5,
+    "enhed": "g",
+    "tilsaetning": "kog",
+    "tidspunkt": 10,
+    "beskrivelse": "Giver krydret, pebret karakter. Bruges i belgiske saisons og farmhouse ales. Knuses groft før tilsætning."
+  }
+]

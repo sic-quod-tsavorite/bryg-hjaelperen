@@ -1,0 +1,227 @@
+[
+  {
+    "id": "safale-us-05",
+    "navn": "Safale US-05",
+    "producent": "Fermentis",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 24,
+    "attenuering": 81
+  },
+  {
+    "id": "safale-s-04",
+    "navn": "Safale S-04",
+    "producent": "Fermentis",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 24,
+    "attenuering": 75
+  },
+  {
+    "id": "safale-k-97",
+    "navn": "Safale K-97",
+    "producent": "Fermentis",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 24,
+    "attenuering": 82
+  },
+  {
+    "id": "saflager-w-34-70",
+    "navn": "Saflager W-34/70",
+    "producent": "Fermentis",
+    "type": "undergaeret",
+    "tempMin": 9,
+    "tempMax": 15,
+    "attenuering": 83
+  },
+  {
+    "id": "saflager-s-23",
+    "navn": "Saflager S-23",
+    "producent": "Fermentis",
+    "type": "undergaeret",
+    "tempMin": 9,
+    "tempMax": 15,
+    "attenuering": 82
+  },
+  {
+    "id": "safbrew-t-58",
+    "navn": "Safbrew T-58",
+    "producent": "Fermentis",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 25,
+    "attenuering": 75
+  },
+  {
+    "id": "safbrew-be-256",
+    "navn": "Safbrew BE-256",
+    "producent": "Fermentis",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 25,
+    "attenuering": 82
+  },
+  {
+    "id": "safale-wb-06",
+    "navn": "Safale WB-06",
+    "producent": "Fermentis",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 24,
+    "attenuering": 86
+  },
+  {
+    "id": "nottingham",
+    "navn": "Nottingham",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 14,
+    "tempMax": 21,
+    "attenuering": 77
+  },
+  {
+    "id": "windsor",
+    "navn": "Windsor",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 21,
+    "attenuering": 67
+  },
+  {
+    "id": "london-esb",
+    "navn": "London ESB",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 22,
+    "attenuering": 72
+  },
+  {
+    "id": "belle-saison",
+    "navn": "Belle Saison",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 35,
+    "attenuering": 89
+  },
+  {
+    "id": "abbaye",
+    "navn": "Abbaye",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 17,
+    "tempMax": 25,
+    "attenuering": 82
+  },
+  {
+    "id": "diamond-lager",
+    "navn": "Diamond Lager",
+    "producent": "Lallemand",
+    "type": "undergaeret",
+    "tempMin": 10,
+    "tempMax": 15,
+    "attenuering": 77
+  },
+  {
+    "id": "bry-97",
+    "navn": "BRY-97",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 15,
+    "tempMax": 22,
+    "attenuering": 80
+  },
+  {
+    "id": "verdant-ipa",
+    "navn": "Verdant IPA",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 18,
+    "tempMax": 23,
+    "attenuering": 78
+  },
+  {
+    "id": "new-england",
+    "navn": "New England",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 16,
+    "tempMax": 22,
+    "attenuering": 78
+  },
+  {
+    "id": "voss-kveik",
+    "navn": "Voss Kveik",
+    "producent": "Lallemand",
+    "type": "overgaeret",
+    "tempMin": 25,
+    "tempMax": 40,
+    "attenuering": 80
+  },
+  {
+    "id": "lutra-kveik",
+    "navn": "Lutra Kveik",
+    "producent": "Omega",
+    "type": "overgaeret",
+    "tempMin": 20,
+    "tempMax": 37,
+    "attenuering": 79
+  },
+  {
+    "id": "mangrove-m44",
+    "navn": "M44 West Coast",
+    "producent": "Mangrove Jack's",
+    "type": "overgaeret",
+    "tempMin": 16,
+    "tempMax": 22,
+    "attenuering": 82
+  },
+  {
+    "id": "mangrove-m36",
+    "navn": "M36 Liberty Bell",
+    "producent": "Mangrove Jack's",
+    "type": "overgaeret",
+    "tempMin": 18,
+    "tempMax": 23,
+    "attenuering": 72
+  },
+  {
+    "id": "mangrove-m54",
+    "navn": "M54 California Lager",
+    "producent": "Mangrove Jack's",
+    "type": "undergaeret",
+    "tempMin": 10,
+    "tempMax": 14,
+    "attenuering": 78
+  },
+  {
+    "id": "mangrove-m76",
+    "navn": "M76 Bavarian Lager",
+    "producent": "Mangrove Jack's",
+    "type": "undergaeret",
+    "tempMin": 8,
+    "tempMax": 14,
+    "attenuering": 77
+  },
+  {
+    "id": "mangrove-m21",
+    "navn": "M21 Belgian Wit",
+    "producent": "Mangrove Jack's",
+    "type": "overgaeret",
+    "tempMin": 18,
+    "tempMax": 25,
+    "attenuering": 76
+  },
+  {
+    "id": "mangrove-m29",
+    "navn": "M29 French Saison",
+    "producent": "Mangrove Jack's",
+    "type": "overgaeret",
+    "tempMin": 26,
+    "tempMax": 32,
+    "attenuering": 89
+  }
+]
