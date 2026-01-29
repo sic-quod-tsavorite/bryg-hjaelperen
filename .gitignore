@@ -48,5 +48,11 @@ yarn-error.*
 # ESLint
 .eslintcache
 
+# Tests
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/test-results/
+
 # other
 *.bak
