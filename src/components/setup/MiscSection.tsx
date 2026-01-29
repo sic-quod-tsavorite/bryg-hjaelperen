@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
 import miscData from '../../data/misc.json';
@@ -28,6 +28,7 @@ export function MiscSection({
   onRemove,
 }: MiscSectionProps) {
   const [searchText, setSearchText] = useState('');
+  const sectionRef = useRef<View>(null);
   const resolvedTheme = useResolvedTheme();
   const isDark = resolvedTheme === 'dark';
 
@@ -69,63 +70,8 @@ export function MiscSection({
   };
 
   return (
-    <View className="relative z-10">
+    <View ref={sectionRef} className="relative z-10">
       <SectionHeader title="Misc. Tilsætninger" icon="flask-outline" />
-
-      {/* Misc list */}
-      {misc.map((item) => {
-        const predefined = predefinedMisc.find((m) => m.id === item.miscId);
-
-        return (
-          <View
-            key={item.id}
-            className="mb-3 rounded-xl border border-border bg-surface-elevated p-4 shadow-sm dark:border-border-dark dark:bg-surface-elevated-dark"
-          >
-            <View className="flex-row items-center justify-between">
-              <View className="flex-1 flex-row items-center">
-                <Text className="text-base font-semibold text-text-primary dark:text-text-primary-dark">
-                  {item.navn}
-                </Text>
-                {predefined && (
-                  <InfoButton onPress={() => handleShowInfo(predefined.id)} />
-                )}
-              </View>
-              <Pressable
-                onPress={() => onRemove(item.id)}
-                className="h-8 w-8 items-center justify-center rounded-full bg-error-bg dark:bg-error-bg-dark"
-              >
-                <Ionicons name="trash-outline" size={16} color="#dc2626" />
-              </Pressable>
-            </View>
-
-            <View className="mt-3 flex-row items-end gap-3">
-              <View className="flex-1">
-                <NumberInput
-                  label="Mængde"
-                  value={item.maengde}
-                  onChange={(v) => onUpdate(item.id, { maengde: v ?? 0 })}
-                  unit={item.enhed}
-                  placeholder="0"
-                  min={0}
-                />
-              </View>
-
-              {item.tilsaetning === 'kog' && item.tidspunkt !== undefined && (
-                <View className="w-28">
-                  <NumberInput
-                    label="Tidspunkt"
-                    value={item.tidspunkt}
-                    onChange={(v) => onUpdate(item.id, { tidspunkt: v ?? 0 })}
-                    unit="min"
-                    placeholder="0"
-                    min={0}
-                  />
-                </View>
-              )}
-            </View>
-          </View>
-        );
-      })}
 
       {/* Add misc autocomplete */}
       <AutocompleteInput
@@ -135,6 +81,7 @@ export function MiscSection({
         onSelect={handleSelect}
         items={predefinedMisc}
         placeholder="Søg efter tilsætninger..."
+        sectionRef={sectionRef}
         renderItem={(item) => (
           <View className="flex-row" pointerEvents="none">
             <Text className="flex-1 text-text-primary dark:text-text-primary-dark">
@@ -166,6 +113,63 @@ export function MiscSection({
             </Text>
           </Pressable>
         )}
+
+      {/* Misc list */}
+      <View className="mt-4">
+        {misc.map((item) => {
+          const predefined = predefinedMisc.find((m) => m.id === item.miscId);
+
+          return (
+            <View
+              key={item.id}
+              className="mb-3 rounded-xl border border-border bg-surface-elevated p-4 shadow-sm dark:border-border-dark dark:bg-surface-elevated-dark"
+            >
+              <View className="flex-row items-center justify-between">
+                <View className="flex-1 flex-row items-center">
+                  <Text className="text-base font-semibold text-text-primary dark:text-text-primary-dark">
+                    {item.navn}
+                  </Text>
+                  {predefined && (
+                    <InfoButton onPress={() => handleShowInfo(predefined.id)} />
+                  )}
+                </View>
+                <Pressable
+                  onPress={() => onRemove(item.id)}
+                  className="h-8 w-8 items-center justify-center rounded-full bg-error-bg dark:bg-error-bg-dark"
+                >
+                  <Ionicons name="trash-outline" size={16} color="#dc2626" />
+                </Pressable>
+              </View>
+
+              <View className="mt-3 flex-row items-end gap-3">
+                <View className="flex-1">
+                  <NumberInput
+                    label="Mængde"
+                    value={item.maengde}
+                    onChange={(v) => onUpdate(item.id, { maengde: v ?? 0 })}
+                    unit={item.enhed}
+                    placeholder="0"
+                    min={0}
+                  />
+                </View>
+
+                {item.tilsaetning === 'kog' && item.tidspunkt !== undefined && (
+                  <View className="w-28">
+                    <NumberInput
+                      label="Tidspunkt"
+                      value={item.tidspunkt}
+                      onChange={(v) => onUpdate(item.id, { tidspunkt: v ?? 0 })}
+                      unit="min"
+                      placeholder="0"
+                      min={0}
+                    />
+                  </View>
+                )}
+              </View>
+            </View>
+          );
+        })}
+      </View>
     </View>
   );
 }

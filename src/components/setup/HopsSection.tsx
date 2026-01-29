@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
 import hopsData from '../../data/hops.json';
@@ -35,6 +35,7 @@ export function HopsSection({
   onRemove,
 }: HopsSectionProps) {
   const [searchText, setSearchText] = useState('');
+  const sectionRef = useRef<View>(null);
   const resolvedTheme = useResolvedTheme();
   const isDark = resolvedTheme === 'dark';
 
@@ -72,23 +73,8 @@ export function HopsSection({
   };
 
   return (
-    <View className="relative z-20">
+    <View ref={sectionRef} className="relative z-20">
       <SectionHeader title="Humle" icon="leaf-outline" />
-
-      {/* Hops list */}
-      {hops.map((hop) => (
-        <HopsRow
-          key={hop.id}
-          hop={hop}
-          ibuContribution={calculateHopIBUContribution(
-            hop,
-            volumeLiter,
-            boilGravity
-          )}
-          onUpdate={(updates) => onUpdate(hop.id, updates)}
-          onRemove={() => onRemove(hop.id)}
-        />
-      ))}
 
       {/* Add hops autocomplete */}
       <AutocompleteInput
@@ -98,6 +84,7 @@ export function HopsSection({
         onSelect={handleSelect}
         items={predefinedHops}
         placeholder="Søg efter humle..."
+        sectionRef={sectionRef}
         renderItem={(item) => (
           <View className="flex-row" pointerEvents="none">
             <Text className="flex-1 text-text-primary dark:text-text-primary-dark">
@@ -129,6 +116,23 @@ export function HopsSection({
             </Text>
           </Pressable>
         )}
+
+      {/* Hops list */}
+      <View className="mt-4">
+        {hops.map((hop) => (
+          <HopsRow
+            key={hop.id}
+            hop={hop}
+            ibuContribution={calculateHopIBUContribution(
+              hop,
+              volumeLiter,
+              boilGravity
+            )}
+            onUpdate={(updates) => onUpdate(hop.id, updates)}
+            onRemove={() => onRemove(hop.id)}
+          />
+        ))}
+      </View>
     </View>
   );
 }

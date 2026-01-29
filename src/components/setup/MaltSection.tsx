@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
 import maltsData from '../../data/malts.json';
@@ -28,6 +28,7 @@ export function MaltSection({
   onRemove,
 }: MaltSectionProps) {
   const [searchText, setSearchText] = useState('');
+  const sectionRef = useRef<View>(null);
   const percentages = calculateMaltPercentages(malts);
   const resolvedTheme = useResolvedTheme();
   const isDark = resolvedTheme === 'dark';
@@ -61,30 +62,8 @@ export function MaltSection({
   const totalWeight = malts.reduce((sum, m) => sum + m.maengde, 0);
 
   return (
-    <View className="relative z-30">
+    <View ref={sectionRef} className="relative z-30">
       <SectionHeader title="Malt" icon="layers-outline" />
-
-      {/* Malt list */}
-      {malts.map((malt) => (
-        <MaltRow
-          key={malt.id}
-          malt={malt}
-          percentage={percentages.get(malt.id) ?? 0}
-          onUpdate={(updates) => onUpdate(malt.id, updates)}
-          onRemove={() => onRemove(malt.id)}
-        />
-      ))}
-
-      {/* Total weight display */}
-      {totalWeight > 0 && (
-        <View className="mb-4 flex-row justify-end">
-          <View className="rounded-lg bg-surface-elevated px-4 py-2 shadow-sm dark:bg-surface-elevated-dark">
-            <Text className="font-semibold text-text-primary dark:text-text-primary-dark">
-              Total: {(totalWeight / 1000).toFixed(2)} kg
-            </Text>
-          </View>
-        </View>
-      )}
 
       {/* Add malt autocomplete */}
       <AutocompleteInput
@@ -94,6 +73,7 @@ export function MaltSection({
         onSelect={handleSelect}
         items={predefinedMalts}
         placeholder="Søg efter malt..."
+        sectionRef={sectionRef}
         renderItem={(item) => (
           <View className="flex-row" pointerEvents="none">
             <Text className="flex-1 text-text-primary dark:text-text-primary-dark">
@@ -125,6 +105,30 @@ export function MaltSection({
             </Text>
           </Pressable>
         )}
+
+      {/* Malt list */}
+      <View className="mt-4">
+        {malts.map((malt) => (
+          <MaltRow
+            key={malt.id}
+            malt={malt}
+            percentage={percentages.get(malt.id) ?? 0}
+            onUpdate={(updates) => onUpdate(malt.id, updates)}
+            onRemove={() => onRemove(malt.id)}
+          />
+        ))}
+      </View>
+
+      {/* Total weight display */}
+      {totalWeight > 0 && (
+        <View className="mb-4 flex-row justify-end">
+          <View className="rounded-lg bg-surface-elevated px-4 py-2 shadow-sm dark:bg-surface-elevated-dark">
+            <Text className="font-semibold text-text-primary dark:text-text-primary-dark">
+              Total: {(totalWeight / 1000).toFixed(2)} kg
+            </Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 }
