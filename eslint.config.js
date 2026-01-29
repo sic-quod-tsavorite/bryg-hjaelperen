@@ -1,23 +1,32 @@
-const { defineConfig, globalIgnores } = require('eslint/config');
 const expoConfig = require('eslint-config-expo/flat');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 
-module.exports = defineConfig([
-  globalIgnores([
-    'dist/*',
-    'node_modules/*',
-    '.expo/*',
-    'web-build/*',
-    'ios/*',
-    'android/*',
-    '*.config.js',
-  ]),
+module.exports = [
+  {
+    ignores: [
+      'dist/*',
+      'node_modules/*',
+      '.expo/*',
+      'web-build/*',
+      'ios/*',
+      'android/*',
+    ],
+  },
 
-  expoConfig,
+  ...expoConfig,
 
   eslintPluginPrettierRecommended,
 
   {
+    files: ['*.config.js'],
+    rules: {
+      'import/no-commonjs': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+
+  {
+    files: ['**/*.ts', '**/*.tsx'],
     rules: {
       'import/order': [
         'warn',
@@ -54,4 +63,4 @@ module.exports = defineConfig([
       'prettier/prettier': 'error',
     },
   },
-]);
+];
