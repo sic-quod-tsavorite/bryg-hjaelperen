@@ -82,13 +82,14 @@ export default function SetupTab() {
 
   return (
     <ScrollProvider>
-      {(scrollViewRef, handleScroll) => (
+      {(scrollViewRef, handleScroll, scrollEnabled) => (
         <ScrollView
           ref={scrollViewRef}
           className="flex-1 bg-background dark:bg-background-dark"
           keyboardShouldPersistTaps="handled"
           onScroll={handleScroll}
           scrollEventThrottle={16}
+          scrollEnabled={scrollEnabled}
         >
           <View className="p-4">
             {/* Header with reset button */}
