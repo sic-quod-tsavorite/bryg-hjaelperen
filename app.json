@@ -26,7 +26,10 @@
       "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "static",
+      "baseUrl": "/bryg-hjaelperen"
     },
     "plugins": ["expo-router"],
     "extra": {
