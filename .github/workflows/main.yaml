@@ -26,6 +26,9 @@ jobs:
       - name: Security Audit
         run: bun audit --audit-level=high
 
+      - name: Install playwright for bun
+        run: bunx playwright install
+
       - name: Check lint, typecheck and prettier format
         run: bun run check
 
