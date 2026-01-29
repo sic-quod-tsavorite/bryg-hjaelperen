@@ -12,7 +12,7 @@
   { "id": "saaz", "navn": "Saaz", "alfaSyre": 3.5 },
   { "id": "hallertauer", "navn": "Hallertauer Mittelfrüh", "alfaSyre": 4.0 },
   { "id": "tettnang", "navn": "Tettnanger", "alfaSyre": 4.5 },
-  { "id": "spalt", "navn": "Spalt", "alfaSyre": 4.0 },
+  { "id": "spalt", "navn": "Spalter", "alfaSyre": 4.0 },
   { "id": "styrian-goldings", "navn": "Styrian Goldings", "alfaSyre": 5.0 },
   { "id": "east-kent-goldings", "navn": "East Kent Goldings", "alfaSyre": 5.0 },
   { "id": "fuggle", "navn": "Fuggle", "alfaSyre": 4.5 },
@@ -22,5 +22,16 @@
   { "id": "perle", "navn": "Perle", "alfaSyre": 8.0 },
   { "id": "warrior", "navn": "Warrior", "alfaSyre": 16.0 },
   { "id": "el-dorado", "navn": "El Dorado", "alfaSyre": 14.0 },
-  { "id": "sabro", "navn": "Sabro", "alfaSyre": 15.0 }
+  { "id": "sabro", "navn": "Sabro", "alfaSyre": 15.0 },
+  { "id": "hersbrucker", "navn": "Hersbrucker", "alfaSyre": 3.0 },
+  { "id": "azacca", "navn": "Azacca", "alfaSyre": 15.0 },
+  { "id": "bravo", "navn": "Bravo", "alfaSyre": 15.5 },
+  { "id": "cashmere", "navn": "Cashmere", "alfaSyre": 8.0 },
+  { "id": "cluster", "navn": "Cluster", "alfaSyre": 7.0 },
+  { "id": "admiral", "navn": "Admiral", "alfaSyre": 14.5 },
+  { "id": "bramling-cross", "navn": "Bramling Cross", "alfaSyre": 6.0 },
+  { "id": "challenger", "navn": "Challenger", "alfaSyre": 7.5 },
+  { "id": "first-gold", "navn": "First Gold", "alfaSyre": 7.5 },
+  { "id": "mandarina-bavaria", "navn": "Mandarina Bavaria", "alfaSyre": 8.5 },
+  { "id": "saphir", "navn": "Saphir", "alfaSyre": 3.5 }
 ]
