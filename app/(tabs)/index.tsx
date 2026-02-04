@@ -15,16 +15,12 @@ import { CalculationsCard } from '../../src/components/setup/CalculationsCard';
 import { HopsSection } from '../../src/components/setup/HopsSection';
 import { MaltSection } from '../../src/components/setup/MaltSection';
 import { MiscSection } from '../../src/components/setup/MiscSection';
-import { StylePicker } from '../../src/components/setup/StylePicker';
 import { VolumeInput } from '../../src/components/setup/VolumeInput';
 import { YeastSection } from '../../src/components/setup/YeastSection';
-import { useResolvedTheme } from '../../src/components/ThemeProvider';
 import { ScrollProvider } from '../../src/contexts/ScrollContext';
 import { useSessionStore } from '../../src/store/sessionStore';
 
 export default function SetupTab() {
-  const resolvedTheme = useResolvedTheme();
-  const isDark = resolvedTheme === 'dark';
   const [keyboardHeight, setKeyboardHeight] = useState(0);
 
   // Track keyboard height for bottom padding
@@ -46,7 +42,6 @@ export default function SetupTab() {
 
   const {
     session,
-    setStil,
     setVolume,
     addMalt,
     updateMalt,
@@ -108,24 +103,17 @@ export default function SetupTab() {
               </Pressable>
             </View>
 
-            {/* Beer style picker */}
-            <StylePicker
-              value={session.stil}
-              onChange={setStil}
-              isDark={isDark}
-            />
-
-            {/* Volume input */}
-            <View className="mt-4">
-              <VolumeInput value={session.volumeLiter} onChange={setVolume} />
-            </View>
-
             {/* Live calculations */}
             <CalculationsCard
               malts={session.malts}
               hops={session.hops}
               volumeLiter={session.volumeLiter}
             />
+
+            {/* Volume input */}
+            <View className="mt-4">
+              <VolumeInput value={session.volumeLiter} onChange={setVolume} />
+            </View>
 
             {/* Malt section */}
             <MaltSection

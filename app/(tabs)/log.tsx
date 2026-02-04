@@ -6,11 +6,17 @@ import { FGInput } from '../../src/components/log/FGInput';
 import { LogEntryDisplay } from '../../src/components/log/LogEntry';
 import { LogForm } from '../../src/components/log/LogForm';
 import { PhotoPicker } from '../../src/components/log/PhotoPicker';
+import { StylePicker } from '../../src/components/setup/StylePicker';
+import { useResolvedTheme } from '../../src/components/ThemeProvider';
 import { useSessionStore } from '../../src/store/sessionStore';
 
 export default function LogTab() {
+  const resolvedTheme = useResolvedTheme();
+  const isDark = resolvedTheme === 'dark';
+
   const {
     session,
+    setStil,
     setNavn,
     setBeskrivelse,
     setFaktiskFG,
@@ -44,6 +50,15 @@ export default function LogTab() {
           placeholder="Navngiv dit bryg..."
           placeholderTextColor="#a3a3a3"
         />
+
+        {/* Beer style picker */}
+        <View className="mb-4">
+          <StylePicker
+            value={session.stil}
+            onChange={setStil}
+            isDark={isDark}
+          />
+        </View>
 
         {/* Description */}
         <Text className="mb-2 text-sm font-medium text-text-secondary dark:text-text-secondary-dark">
