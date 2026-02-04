@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput } from 'react-native';
 
 interface NumberInputProps {
@@ -23,8 +24,21 @@ export function NumberInput({
   decimals: _decimals = 0,
   className = '',
 }: NumberInputProps) {
+  const [localText, setLocalText] = useState(
+    value !== null ? value.toString() : ''
+  );
+  const [isFocused, setIsFocused] = useState(false);
+
+  // Sync local text from prop when not focused (external changes)
+  useEffect(() => {
+    if (!isFocused) {
+      setLocalText(value !== null ? value.toString() : '');
+    }
+  }, [value, isFocused]);
+
   const handleChange = (text: string) => {
     if (text === '') {
+      setLocalText('');
       onChange(null);
       return;
     }
@@ -36,6 +50,9 @@ export function NumberInput({
     if (!/^-?\d*\.?\d*$/.test(cleanText)) {
       return;
     }
+
+    // Always update local text to preserve intermediate states like "1." or "1.0"
+    setLocalText(cleanText);
 
     const num = parseFloat(cleanText);
 
@@ -50,8 +67,6 @@ export function NumberInput({
     onChange(num);
   };
 
-  const displayValue = value !== null ? value.toString() : '';
-
   return (
     <View className={`${className}`}>
       <Text className="mb-2 text-sm font-medium text-text-secondary dark:text-text-secondary-dark">
@@ -60,8 +75,10 @@ export function NumberInput({
       <View className="flex-row items-center">
         <TextInput
           className="flex-1 rounded-lg border border-border bg-surface-elevated px-4 py-3 text-text-primary dark:border-border-dark dark:bg-surface-elevated-dark dark:text-text-primary-dark"
-          value={displayValue}
+          value={localText}
           onChangeText={handleChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           placeholder={placeholder}
           placeholderTextColor="#a3a3a3"
           keyboardType="decimal-pad"
