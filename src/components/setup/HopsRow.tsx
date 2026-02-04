@@ -50,12 +50,13 @@ export function HopsRow({
             className={`flex-1 rounded-lg py-2.5 ${
               hop.type === type
                 ? isDark
-                  ? 'bg-primary-light shadow-sm'
-                  : 'bg-primary shadow-sm'
+                  ? 'bg-primary-light'
+                  : 'bg-primary'
                 : isDark
                   ? 'border border-border-dark bg-surface-dark'
                   : 'border border-border bg-surface'
             }`}
+            style={hop.type === type ? { shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 1 } : undefined}
           >
             <Text
               className={`text-center text-sm font-semibold ${
