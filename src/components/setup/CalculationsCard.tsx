@@ -1,4 +1,5 @@
-import { View, Text } from 'react-native';
+import { useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
 
 import type { SessionMalt, SessionHop } from '../../types/session';
 import {
@@ -7,6 +8,7 @@ import {
   calculateEBC,
   ebcToColor,
   getColorDescription,
+  getBitternessDescription,
 } from '../../utils/calculations';
 
 interface CalculationsCardProps {
@@ -25,6 +27,11 @@ export function CalculationsCard({
   const ibu = calculateIBU(hops, volumeLiter, og);
   const colorHex = ebcToColor(ebc);
   const colorDesc = getColorDescription(ebc);
+  const bitternessDesc = getBitternessDescription(ibu, og);
+  const [showBUGU, setShowBUGU] = useState(false);
+  const [showEBC, setShowEBC] = useState(false);
+  const gravityUnits = (og - 1) * 1000;
+  const buguRatio = gravityUnits > 0 ? (ibu / gravityUnits).toFixed(2) : '0';
 
   return (
     <View className="mt-6 rounded-xl bg-surface-elevated p-5 shadow-md dark:bg-surface-elevated-dark">
@@ -70,12 +77,29 @@ export function CalculationsCard({
         </View>
       </View>
 
-      {/* Color description */}
-      {ebc > 0 && (
-        <View className="mt-4 rounded-lg bg-primary-subtle py-2 dark:bg-surface-dark">
-          <Text className="text-center text-sm font-medium text-primary-dark dark:text-primary-light">
-            {colorDesc}
-          </Text>
+      {/* Color and bitterness descriptions */}
+      {(ebc > 0 || ibu > 0) && (
+        <View className="mt-4 flex-row gap-2">
+          {ibu > 0 && (
+            <Pressable
+              className="flex-1 rounded-lg bg-primary-subtle py-2 dark:bg-surface-dark"
+              onPress={() => setShowBUGU((prev) => !prev)}
+            >
+              <Text className="text-center text-sm font-medium text-primary-dark dark:text-primary-light">
+                {showBUGU ? `${buguRatio} BU:GU` : bitternessDesc}
+              </Text>
+            </Pressable>
+          )}
+          {ebc > 0 && (
+            <Pressable
+              className="flex-1 rounded-lg bg-primary-subtle py-2 dark:bg-surface-dark"
+              onPress={() => setShowEBC((prev) => !prev)}
+            >
+              <Text className="text-center text-sm font-medium text-primary-dark dark:text-primary-light">
+                {showEBC ? `${ebc} EBC` : colorDesc}
+              </Text>
+            </Pressable>
+          )}
         </View>
       )}
     </View>

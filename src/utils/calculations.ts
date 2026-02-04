@@ -242,6 +242,23 @@ export function platoToGravity(plato: number): number {
 }
 
 /**
+ * Get perceived bitterness description in Danish based on BU:GU ratio
+ * BU:GU = IBU / ((OG - 1) × 1000)
+ */
+export function getBitternessDescription(ibu: number, og: number): string {
+  const gravityUnits = (og - 1) * 1000;
+  if (ibu <= 0 || gravityUnits <= 0) return '';
+
+  const ratio = ibu / gravityUnits;
+
+  if (ratio < 0.3) return 'Meget maltrig';
+  if (ratio < 0.5) return 'Maltbalanceret';
+  if (ratio < 0.7) return 'Balanceret';
+  if (ratio < 0.9) return 'Humlebalanceret';
+  return 'Meget bitter';
+}
+
+/**
  * Get color description in Danish based on EBC value
  */
 export function getColorDescription(ebc: number): string {
