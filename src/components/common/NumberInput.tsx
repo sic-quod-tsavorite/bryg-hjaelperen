@@ -72,9 +72,9 @@ export function NumberInput({
       <Text className="mb-2 text-sm font-medium text-text-secondary dark:text-text-secondary-dark">
         {label}
       </Text>
-      <View className="flex-row items-center">
+      <View className="relative">
         <TextInput
-          className="flex-1 rounded-lg border border-border bg-surface-elevated px-4 py-3 text-text-primary dark:border-border-dark dark:bg-surface-elevated-dark dark:text-text-primary-dark"
+          className={`rounded-lg border border-border bg-surface-elevated py-3 text-text-primary dark:border-border-dark dark:bg-surface-elevated-dark dark:text-text-primary-dark ${unit ? 'pl-3 pr-10' : 'px-4'}`}
           value={localText}
           onChangeText={handleChange}
           onFocus={() => setIsFocused(true)}
@@ -85,7 +85,7 @@ export function NumberInput({
           inputMode="decimal"
         />
         {unit && (
-          <Text className="ml-3 min-w-[32px] text-sm font-medium text-text-secondary dark:text-text-secondary-dark">
+          <Text className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium text-text-secondary dark:text-text-secondary-dark">
             {unit}
           </Text>
         )}
