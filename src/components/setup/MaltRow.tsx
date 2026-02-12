@@ -31,7 +31,7 @@ export function MaltRow({
         </Pressable>
       </View>
 
-      <View className="mt-3 flex-row items-end gap-3">
+      <View className="mt-3 flex-row items-start gap-3">
         <View className="flex-1">
           <NumberInput
             label="Mængde"
@@ -53,9 +53,12 @@ export function MaltRow({
           />
         </View>
 
-        <View className="w-20 items-end pb-3">
-          <View className="rounded-lg bg-primary-subtle px-3 py-2 dark:bg-surface-dark">
-            <Text className="text-lg font-bold text-primary dark:text-primary-light">
+        <View className="mt-7 shrink-0">
+          <View
+            className="flex h-[43px] items-center justify-center rounded-lg bg-primary-subtle px-3 dark:bg-surface-dark"
+            style={{ paddingVertical: 0 }}
+          >
+            <Text className="text-sm font-semibold text-primary dark:text-primary-light">
               {percentage.toFixed(1)}%
             </Text>
           </View>

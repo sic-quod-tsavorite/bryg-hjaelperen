@@ -56,7 +56,17 @@ export function HopsRow({
                   ? 'border border-border-dark bg-surface-dark'
                   : 'border border-border bg-surface'
             }`}
-            style={hop.type === type ? { shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 1 } : undefined}
+            style={
+              hop.type === type
+                ? {
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 1 },
+                    shadowOpacity: 0.05,
+                    shadowRadius: 2,
+                    elevation: 1,
+                  }
+                : undefined
+            }
           >
             <Text
               className={`text-center text-sm font-semibold ${
@@ -75,7 +85,7 @@ export function HopsRow({
         ))}
       </View>
 
-      <View className="mt-4 flex-row items-end gap-3">
+      <View className="mt-4 flex-row items-start gap-3">
         <View className="flex-1">
           <NumberInput
             label="Mængde"
@@ -87,7 +97,7 @@ export function HopsRow({
           />
         </View>
 
-        <View className="w-24">
+        <View className="w-20">
           <NumberInput
             label="Alpha %"
             value={hop.alfaSyre}
@@ -100,7 +110,7 @@ export function HopsRow({
         </View>
 
         {hop.type !== 'dryhopping' && (
-          <View className="w-24">
+          <View className="w-20">
             <NumberInput
               label="Kog min"
               value={hop.kogeTid}
@@ -111,18 +121,20 @@ export function HopsRow({
             />
           </View>
         )}
-      </View>
 
-      {/* IBU contribution */}
-      {ibuContribution > 0 && (
-        <View className="mt-3 flex-row justify-end">
-          <View className="rounded-lg bg-primary-subtle px-3 py-1.5 dark:bg-surface-dark">
-            <Text className="text-sm font-semibold text-primary dark:text-primary-light">
-              {ibuContribution.toFixed(1)} IBU
-            </Text>
+        {ibuContribution > 0 && (
+          <View className="mt-7 shrink-0">
+            <View
+              className="flex h-[43px] items-center justify-center rounded-lg bg-primary-subtle px-3 dark:bg-surface-dark"
+              style={{ paddingVertical: 0 }}
+            >
+              <Text className="text-sm font-semibold text-primary dark:text-primary-light">
+                {ibuContribution.toFixed(1)} IBU
+              </Text>
+            </View>
           </View>
-        </View>
-      )}
+        )}
+      </View>
     </View>
   );
 }
