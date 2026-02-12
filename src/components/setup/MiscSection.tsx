@@ -71,7 +71,7 @@ export function MiscSection({
 
   return (
     <View ref={sectionRef} className="relative z-10">
-      <SectionHeader title="Misc. Tilsætninger" icon="flask-outline" />
+      <SectionHeader title="Specialtilsætninger" icon="flask-outline" />
 
       {/* Add misc autocomplete */}
       <AutocompleteInput

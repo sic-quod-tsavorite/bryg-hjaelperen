@@ -109,7 +109,7 @@ export function ExportButton({ session }: ExportButtonProps) {
         ${
           session.misc.length > 0
             ? `
-        <h2>Misc. Tilsætninger</h2>
+        <h2>Specialtilsætninger</h2>
         <table>
           <tr><th>Navn</th><th>Mængde</th><th>Tidspunkt</th></tr>
           ${session.misc.map((m) => `<tr><td>${m.navn}</td><td>${m.maengde} ${m.enhed}</td><td>${m.tilsaetning}</td></tr>`).join('')}
