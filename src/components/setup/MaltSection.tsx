@@ -121,8 +121,8 @@ export function MaltSection({
 
       {/* Total weight display */}
       {totalWeight > 0 && (
-        <View className="mb-4 flex-row justify-end">
-          <View className="rounded-lg bg-surface-elevated px-4 py-2 shadow-sm dark:bg-surface-elevated-dark">
+        <View className="mt-4 flex-row justify-end">
+          <View className="rounded-lg bg-surface-elevated px-4 py-2 dark:bg-surface-elevated-dark">
             <Text className="font-semibold text-text-primary dark:text-text-primary-dark">
               Total: {(totalWeight / 1000).toFixed(2)} kg
             </Text>
