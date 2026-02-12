@@ -1,14 +1,16 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useState, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
 import yeastsData from '../../data/yeasts.json';
 import type { PredefinedYeast } from '../../types/ingredients';
-import type { SessionYeast, YeastType } from '../../types/session';
+import type { SessionYeast } from '../../types/session';
 import { AutocompleteInput } from '../common/AutocompleteInput';
-import { NumberInput } from '../common/NumberInput';
 import { SectionHeader } from '../common/SectionHeader';
 import { useResolvedTheme } from '../ThemeProvider';
+
+import { YeastRow } from './YeastRow';
 
 const predefinedYeasts: PredefinedYeast[] = yeastsData as PredefinedYeast[];
 
@@ -18,11 +20,6 @@ interface YeastSectionProps {
   onUpdate: (id: string, updates: Partial<SessionYeast>) => void;
   onRemove: (id: string) => void;
 }
-
-const yeastTypeLabels: Record<YeastType, string> = {
-  overgaeret: 'Overgæret (Ale)',
-  undergaeret: 'Undergæret (Lager)',
-};
 
 const getAttenuationDescription = (attenuering: number): string => {
   if (attenuering >= 85) return 'meget tør';
@@ -124,99 +121,27 @@ export function YeastSection({
       {/* Yeast list */}
       <View className="mt-4">
         {(yeasts ?? []).map((yeast) => {
-          const predefined = predefinedYeasts.find(
-            (y) => y.id === yeast.yeastId
-          );
+          const yeastInfo = yeast.yeastId
+            ? predefinedYeasts.find((y) => y.id === yeast.yeastId)
+            : null;
 
           return (
-            <View
+            <YeastRow
               key={yeast.id}
-              className="mb-3 rounded-xl border border-border bg-surface-elevated p-4 shadow-sm dark:border-border-dark dark:bg-surface-elevated-dark"
-            >
-              <View className="flex-row items-center justify-between">
-                <View className="flex-1">
-                  <Text className="text-base font-semibold text-text-primary dark:text-text-primary-dark">
-                    {yeast.navn}
-                  </Text>
-                  {predefined && (
-                    <Text className="text-sm text-text-secondary dark:text-text-secondary-dark">
-                      {predefined.producent} · {predefined.tempMin}-
-                      {predefined.tempMax}°C · {predefined.attenuering}% att. (
-                      {getAttenuationDescription(predefined.attenuering)})
-                    </Text>
-                  )}
-                </View>
-                <Pressable
-                  onPress={() => onRemove(yeast.id)}
-                  className="h-8 w-8 items-center justify-center rounded-full bg-error-bg dark:bg-error-bg-dark"
-                >
-                  <Ionicons name="trash-outline" size={16} color="#dc2626" />
-                </Pressable>
-              </View>
-
-              {/* Yeast type selector */}
-              <Text className="mb-2 mt-3 text-sm font-medium text-text-secondary dark:text-text-secondary-dark">
-                Gærtype
-              </Text>
-              <View className="mb-4 flex-row gap-2">
-                {(Object.keys(yeastTypeLabels) as YeastType[]).map((type) => (
-                  <Pressable
-                    key={type}
-                    onPress={() => onUpdate(yeast.id, { type })}
-                    className={`flex-1 rounded-lg py-3 ${
-                      yeast.type === type
-                        ? isDark
-                          ? 'bg-primary-light shadow-sm'
-                          : 'bg-primary shadow-sm'
-                        : isDark
-                          ? 'border border-border-dark bg-surface-dark'
-                          : 'border border-border bg-surface'
-                    }`}
-                  >
-                    <Text
-                      className={`text-center text-sm font-semibold ${
-                        yeast.type === type
-                          ? isDark
-                            ? 'text-background-dark'
-                            : 'text-text-inverse'
-                          : isDark
-                            ? 'text-text-secondary-dark'
-                            : 'text-text-secondary'
-                      }`}
-                    >
-                      {yeastTypeLabels[type]}
-                    </Text>
-                  </Pressable>
-                ))}
-              </View>
-
-              <View className="flex-row items-end gap-3">
-                <View className="flex-1">
-                  <NumberInput
-                    label="Antal pakker"
-                    value={yeast.pakker}
-                    onChange={(v) => onUpdate(yeast.id, { pakker: v ?? 1 })}
-                    placeholder="1"
-                    min={1}
-                    max={10}
-                  />
-                </View>
-
-                <View className="flex-1">
-                  <NumberInput
-                    label="Gæringstemperatur"
-                    value={yeast.temperatur ?? null}
-                    onChange={(v) =>
-                      onUpdate(yeast.id, { temperatur: v ?? undefined })
+              yeast={yeast}
+              onUpdate={(updates) => onUpdate(yeast.id, updates)}
+              onRemove={() => onRemove(yeast.id)}
+              onShowInfo={
+                yeastInfo
+                  ? () => {
+                      router.push({
+                        pathname: '/modal/ingredient-info',
+                        params: { id: yeastInfo.id, type: 'yeast' },
+                      });
                     }
-                    unit="°C"
-                    placeholder="f.eks. 18"
-                    min={0}
-                    max={40}
-                  />
-                </View>
-              </View>
-            </View>
+                  : undefined
+              }
+            />
           );
         })}
       </View>

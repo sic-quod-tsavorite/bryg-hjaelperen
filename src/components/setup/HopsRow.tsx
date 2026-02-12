@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { View, Text, Pressable } from 'react-native';
 
 import type { SessionHop, HopType } from '../../types/session';
+import { InfoButton } from '../common/InfoButton';
 import { NumberInput } from '../common/NumberInput';
 import { useResolvedTheme } from '../ThemeProvider';
 
@@ -10,6 +11,7 @@ interface HopsRowProps {
   ibuContribution: number;
   onUpdate: (updates: Partial<SessionHop>) => void;
   onRemove: () => void;
+  onShowInfo?: () => void;
 }
 
 const hopTypeLabels: Record<HopType, string> = {
@@ -23,6 +25,7 @@ export function HopsRow({
   ibuContribution,
   onUpdate,
   onRemove,
+  onShowInfo,
 }: HopsRowProps) {
   const resolvedTheme = useResolvedTheme();
   const isDark = resolvedTheme === 'dark';
@@ -30,9 +33,12 @@ export function HopsRow({
   return (
     <View className="mb-3 rounded-xl border border-border bg-surface-elevated p-4 shadow-sm dark:border-border-dark dark:bg-surface-elevated-dark">
       <View className="flex-row items-center justify-between">
-        <Text className="flex-1 text-base font-semibold text-text-primary dark:text-text-primary-dark">
-          {hop.navn}
-        </Text>
+        <View className="flex-1 flex-row items-center">
+          <Text className="text-base font-semibold text-text-primary dark:text-text-primary-dark">
+            {hop.navn}
+          </Text>
+          {onShowInfo && <InfoButton onPress={onShowInfo} />}
+        </View>
         <Pressable
           onPress={onRemove}
           className="h-8 w-8 items-center justify-center rounded-full bg-error-bg dark:bg-error-bg-dark"

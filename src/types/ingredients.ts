@@ -1,15 +1,31 @@
 // Predefined ingredient types from JSON data files
 
+export type MaltType = 'base' | 'crystal' | 'roasted' | 'specialty' | 'smoked';
+
 export interface PredefinedMalt {
   id: string;
   navn: string;
   ebc: number;
+  // Extended info for ingredient detail page
+  type?: MaltType;
+  beskrivelse?: string;
+  smag?: string;
+  oeltyper?: string[];
+  brugstips?: string;
+  diastatiskKraft?: string;
+  udvinding?: string;
 }
 
 export interface PredefinedHop {
   id: string;
   navn: string;
   alfaSyre: number;
+  // Extended info for ingredient detail page
+  type?: string;
+  beskrivelse?: string;
+  aroma?: string;
+  oeltyper?: string[];
+  alfaSyreRange?: number[]; // [min, max] typical range for this hop
 }
 
 export type MiscKategori =
@@ -30,6 +46,19 @@ export interface PredefinedYeast {
   tempMin: number;
   tempMax: number;
   attenuering: number; // Typical attenuation percentage
+  // Extended info for ingredient detail page
+  beskrivelse?: string;
+  smagsprofil?: string;
+  esterprofil?: string;
+  flokkulering?: 'lav' | 'medium' | 'høj';
+  gaeringsHastighed?: 'hurtig' | 'medium' | 'langsom';
+  alkoholTolerance?: string;
+  oprindelse?: string;
+  pitchingRate?: string;
+  rehydrering?: string;
+  oeltyper?: string[];
+  alternativer?: string[];
+  noter?: string;
 }
 
 export interface MiscBrugMetode {

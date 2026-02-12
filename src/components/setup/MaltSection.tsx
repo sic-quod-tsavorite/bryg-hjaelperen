@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useState, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
@@ -12,7 +13,7 @@ import { useResolvedTheme } from '../ThemeProvider';
 
 import { MaltRow } from './MaltRow';
 
-const predefinedMalts: PredefinedMalt[] = maltsData;
+const predefinedMalts: PredefinedMalt[] = maltsData as PredefinedMalt[];
 
 interface MaltSectionProps {
   malts: SessionMalt[];
@@ -108,15 +109,30 @@ export function MaltSection({
 
       {/* Malt list */}
       <View className="mt-4">
-        {malts.map((malt) => (
-          <MaltRow
-            key={malt.id}
-            malt={malt}
-            percentage={percentages.get(malt.id) ?? 0}
-            onUpdate={(updates) => onUpdate(malt.id, updates)}
-            onRemove={() => onRemove(malt.id)}
-          />
-        ))}
+        {malts.map((malt) => {
+          const maltInfo = malt.maltId
+            ? predefinedMalts.find((m) => m.id === malt.maltId)
+            : null;
+          return (
+            <MaltRow
+              key={malt.id}
+              malt={malt}
+              percentage={percentages.get(malt.id) ?? 0}
+              onUpdate={(updates) => onUpdate(malt.id, updates)}
+              onRemove={() => onRemove(malt.id)}
+              onShowInfo={
+                maltInfo
+                  ? () => {
+                      router.push({
+                        pathname: '/modal/ingredient-info',
+                        params: { id: maltInfo.id, type: 'malt' },
+                      });
+                    }
+                  : undefined
+              }
+            />
+          );
+        })}
       </View>
 
       {/* Total weight display */}

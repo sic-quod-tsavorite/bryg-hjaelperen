@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useState, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
@@ -41,6 +42,13 @@ export function HopsSection({
 
   const og = calculateOG(malts, volumeLiter);
   const boilGravity = 1 + (og - 1) * 0.9;
+
+  const handleShowInfo = (hopId: string) => {
+    router.push({
+      pathname: '/modal/ingredient-info',
+      params: { id: hopId, type: 'hop' },
+    });
+  };
 
   const handleSelect = (item: PredefinedHop) => {
     const newHop: SessionHop = {
@@ -119,19 +127,26 @@ export function HopsSection({
 
       {/* Hops list */}
       <View className="mt-4">
-        {hops.map((hop) => (
-          <HopsRow
-            key={hop.id}
-            hop={hop}
-            ibuContribution={calculateHopIBUContribution(
-              hop,
-              volumeLiter,
-              boilGravity
-            )}
-            onUpdate={(updates) => onUpdate(hop.id, updates)}
-            onRemove={() => onRemove(hop.id)}
-          />
-        ))}
+        {hops.map((hop) => {
+          const predefined = predefinedHops.find((h) => h.id === hop.hopId);
+
+          return (
+            <HopsRow
+              key={hop.id}
+              hop={hop}
+              ibuContribution={calculateHopIBUContribution(
+                hop,
+                volumeLiter,
+                boilGravity
+              )}
+              onUpdate={(updates) => onUpdate(hop.id, updates)}
+              onRemove={() => onRemove(hop.id)}
+              onShowInfo={
+                predefined ? () => handleShowInfo(predefined.id) : undefined
+              }
+            />
+          );
+        })}
       </View>
     </View>
   );

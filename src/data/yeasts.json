@@ -6,7 +6,29 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 24,
-    "attenuering": 81
+    "attenuering": 81,
+    "beskrivelse": "En alsidig amerikansk ale-gær kendt for sin rene gæringsprofil. Producerer meget få estere, hvilket gør den ideel til humlede øl hvor humlen skal skinne igennem.",
+    "smagsprofil": "Meget ren og neutral. Lader malt- og humlekarakteren dominere uden at tilføje markante gær-noter.",
+    "esterprofil": "Lav ester-produktion. Subtile frugt-noter under højere temperaturer.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "hurtig",
+    "alkoholTolerance": "Op til 11% ABV",
+    "oprindelse": "USA",
+    "pitchingRate": "50-80g/hL for ale (standard)",
+    "rehydrering": "Anbefales: Rehydrer i 10x gærvægt lunkent vand (35-40°C) i 15-30 minutter",
+    "oeltyper": [
+      "American Pale Ale",
+      "IPA",
+      "Double IPA",
+      "American Wheat",
+      "Cream Ale"
+    ],
+    "alternativer": [
+      "Wyeast 1056 American Ale",
+      "White Labs WLP001 California Ale",
+      "Lallemand BRY-97"
+    ],
+    "noter": "Gær hurtigt ud og klarer godt. Kan gære ved lavere temperaturer (15°C) for renere profil."
   },
   {
     "id": "safale-s-04",
@@ -15,7 +37,30 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 24,
-    "attenuering": 75
+    "attenuering": 75,
+    "beskrivelse": "Engelsk ale-gær kendt for hurtig gæring og god flokkulering. Efterlader en let frugtig karakter og mere sødme end US-05.",
+    "smagsprofil": "Frugtig med subtil ester-karakter. Lidt mere malt-sødme i finalen end amerikanske gær.",
+    "esterprofil": "Moderat frugtig med noter af æble og pære. Stærkere ved højere temperaturer.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "hurtig",
+    "alkoholTolerance": "Op til 9% ABV",
+    "oprindelse": "England",
+    "pitchingRate": "50-80g/hL for ale (standard)",
+    "rehydrering": "Anbefales: Rehydrer i 10x gærvægt lunkent vand (35-40°C) i 15-30 minutter",
+    "oeltyper": [
+      "English Bitter",
+      "Pale Ale",
+      "Brown Ale",
+      "Porter",
+      "Stout",
+      "ESB"
+    ],
+    "alternativer": [
+      "Wyeast 1098 British Ale",
+      "White Labs WLP005 British Ale",
+      "Lallemand Windsor"
+    ],
+    "noter": "Fremragende flokkulering giver klar øl hurtigt. Kan producerer svovl-noter ved stress - undgå for lave temperaturer."
   },
   {
     "id": "safale-k-97",
@@ -24,7 +69,22 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 24,
-    "attenuering": 82
+    "attenuering": 82,
+    "beskrivelse": "Tysk ale-gær (Kölsch-stil) der giver en elegant, ren gæringsprofil med subtil frugtighed. Ideel til tyske ale-stilarter.",
+    "smagsprofil": "Ren og elegant med subtil frugtighed. God balance mellem renhed og karakter.",
+    "esterprofil": "Lav til moderat med fine vinvine-noter og let frugtighed.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 9% ABV",
+    "oprindelse": "Tyskland",
+    "pitchingRate": "50-80g/hL for ale (standard)",
+    "rehydrering": "Anbefales: Rehydrer i 10x gærvægt lunkent vand (35-40°C) i 15-30 minutter",
+    "oeltyper": ["Kölsch", "Altbier", "German Ale", "Pale Ale", "Blonde Ale"],
+    "alternativer": [
+      "Wyeast 2565 Kölsch",
+      "White Labs WLP029 German Ale/Kölsch"
+    ],
+    "noter": "Giver fin klarhed efter kølig lagring. God til øl der skal have lager-lignende renhed med ale-kompleksitet."
   },
   {
     "id": "saflager-w-34-70",
@@ -33,7 +93,31 @@
     "type": "undergaeret",
     "tempMin": 9,
     "tempMax": 15,
-    "attenuering": 83
+    "attenuering": 83,
+    "beskrivelse": "Verdens mest anvendte lager-gær (Weihenstephan 34/70). Ekstremt alsidig med fremragende gæringsegenskaber over hele temperaturintervallet.",
+    "smagsprofil": "Meget ren med subtil malt-sødme. Producerer minimal svovl og estere når temperaturen holdes lav.",
+    "esterprofil": "Meget lav ved lave temperaturer. Stort set neutral.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 11% ABV",
+    "oprindelse": "Tyskland (Weihenstephan)",
+    "pitchingRate": "80-100g/hL for lager, 50-80g/hL for ale-temperaturer",
+    "rehydrering": "Anbefales: Rehydrer i 10x gærvægt lunkent vand (35-40°C) i 15-30 minutter",
+    "oeltyper": [
+      "Pilsner",
+      "Helles",
+      "Dortmunder",
+      "Bock",
+      "Doppelbock",
+      "Oktoberfest",
+      "Vienna Lager"
+    ],
+    "alternativer": [
+      "Wyeast 2124 Bohemian Lager",
+      "White Labs WLP830 German Lager",
+      "Lallemand Diamond Lager"
+    ],
+    "noter": "Kan overraskende nok bruges til 'pseudo-lager' ved 15-18°C med godt resultat. Kræver 2-4 ugers kold lagring."
   },
   {
     "id": "saflager-s-23",
@@ -42,7 +126,28 @@
     "type": "undergaeret",
     "tempMin": 9,
     "tempMax": 15,
-    "attenuering": 82
+    "attenuering": 82,
+    "beskrivelse": "Tjekkisk lager-gær der giver mere frugtig karakter end W-34/70. Ideel til tjekkiske pilsnere og mørke lagere.",
+    "smagsprofil": "Frugtigere end W-34/70 med subtile æble-noter. God malt-karakter.",
+    "esterprofil": "Moderat frugtig med noter af æble og pære sammenlignet med andre lagergær.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 9% ABV",
+    "oprindelse": "Tjekkiet",
+    "pitchingRate": "80-100g/hL for lager",
+    "rehydrering": "Anbefales: Rehydrer i 10x gærvægt lunkent vand (35-40°C) i 15-30 minutter",
+    "oeltyper": [
+      "Czech Pilsner",
+      "Bohemian Pilsner",
+      "Dark Lager",
+      "Schwarzbier",
+      "Baltic Porter"
+    ],
+    "alternativer": [
+      "Wyeast 2278 Czech Pils",
+      "White Labs WLP802 Czech Budejovice Lager"
+    ],
+    "noter": "Giver mere estere end W-34/70, særligt ved højere temperaturer. God til mørke lagere hvor frugtigheden komplimenterer malten."
   },
   {
     "id": "safbrew-t-58",
@@ -51,7 +156,29 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 25,
-    "attenuering": 75
+    "attenuering": 75,
+    "beskrivelse": "Belgisk ale-gær med markant phenol-karakter og peber-noter. Ideel til belgiske stærke ales og specialiteter.",
+    "smagsprofil": "Krydret med markante phenoler og peber-noter. Frugtig med kompleks karakter.",
+    "esterprofil": "Høj med noter af banan, krydderi og belgisk phenol-karakter.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 11% ABV",
+    "oprindelse": "Belgien",
+    "pitchingRate": "50-80g/hL for ale (standard)",
+    "rehydrering": "Anbefales: Rehydrer i 10x gærvægt lunkent vand (35-40°C) i 15-30 minutter",
+    "oeltyper": [
+      "Belgian Dubbel",
+      "Belgian Tripel",
+      "Dark Strong Ale",
+      "Belgian Pale Ale",
+      "Saison"
+    ],
+    "alternativer": [
+      "Wyeast 1214 Belgian Abbey",
+      "White Labs WLP550 Belgian Ale",
+      "Lallemand Abbaye"
+    ],
+    "noter": "Producerer meget phenoler ved lavere temperaturer (15-18°C). Undgå aerering efter gæringsstart for at minimere uønskede phenoler."
   },
   {
     "id": "safbrew-be-256",
@@ -60,7 +187,27 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 25,
-    "attenuering": 82
+    "attenuering": 82,
+    "beskrivelse": "Belgiskt 'Abbaye'-gær med høj attenuering. Ideel til stærke belgiske øl hvor tørhed ønskes.",
+    "smagsprofil": "Kompleks belgisk karakter med frugtige estere og subtile phenoler. Tør finish.",
+    "esterprofil": "Høj med komplekse frugt-noter og belgisk karakter.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "hurtig",
+    "alkoholTolerance": "Op til 12% ABV",
+    "oprindelse": "Belgien",
+    "pitchingRate": "50-80g/hL for ale (standard)",
+    "rehydrering": "Anbefales: Rehydrer i 10x gærvægt lunkent vand (35-40°C) i 15-30 minutter",
+    "oeltyper": [
+      "Belgian Strong Dark Ale",
+      "Quadrupel",
+      "Tripel",
+      "Belgian Golden Strong Ale"
+    ],
+    "alternativer": [
+      "Wyeast 1388 Belgian Strong Ale",
+      "White Labs WLP570 Belgian Golden Ale"
+    ],
+    "noter": "Høj attenuering (82%) gør øllet tørt. Ideel til belgiske stærke ales hvor alkohol ikke skal være for sød."
   },
   {
     "id": "safale-wb-06",
@@ -69,7 +216,22 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 24,
-    "attenuering": 86
+    "attenuering": 86,
+    "beskrivelse": "Tysk hvede-gær der producerer klassiske banan- og krydderi-noter (Hefeweizen-karakter). Meget høj attenuering.",
+    "smagsprofil": "Kraftigt frugtig med dominerende banan-noter og krydderi. Klassisk tysk hvedeøl-karakter.",
+    "esterprofil": "Meget høj med kraftige banan-isoamylacetat noter og krydderi-phenoler.",
+    "flokkulering": "lav",
+    "gaeringsHastighed": "hurtig",
+    "alkoholTolerance": "Op til 10% ABV",
+    "oprindelse": "Tyskland",
+    "pitchingRate": "50-80g/hL for ale (standard)",
+    "rehydrering": "Anbefales: Rehydrer i 10x gærvægt lunkent vand (35-40°C) i 15-30 minutter",
+    "oeltyper": ["Hefeweizen", "Dunkelweizen", "Weizenbock", "Kristallweizen"],
+    "alternativer": [
+      "Wyeast 3068 Weihenstephan Weizen",
+      "White Labs WLP300 Hefeweizen Ale"
+    ],
+    "noter": "Fermenter ved 18-20°C for balance mellem banan og krydderi. Lavere temperaturer giver mere krydderi, højere giver mere banan."
   },
   {
     "id": "nottingham",
@@ -78,7 +240,30 @@
     "type": "overgaeret",
     "tempMin": 14,
     "tempMax": 21,
-    "attenuering": 77
+    "attenuering": 77,
+    "beskrivelse": "Engelsk ale-gær kendt for ekstremt hurtig gæring og høj flokkulering. Meget alsidig med neutral profil.",
+    "smagsprofil": "Neutral til let frugtig. Ren gæring med minimal gær-karakter.",
+    "esterprofil": "Lav til moderat. Subtile æble-noter ved højere temperaturer.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "meget hurtig",
+    "alkoholTolerance": "Op til 11% ABV",
+    "oprindelse": "England",
+    "pitchingRate": "1 pakke til 20-30L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": [
+      "English Bitter",
+      "Pale Ale",
+      "Brown Ale",
+      "Porter",
+      "Stout",
+      "IPA"
+    ],
+    "alternativer": [
+      "Safale S-04",
+      "Wyeast 1098 British Ale",
+      "Windsor (men Windsor er mindre neutral)"
+    ],
+    "noter": "En af de hurtigste gær tilgængelige - kan færdiggøre på 3-4 dage. Fremragende flokkulering giver klar øl."
   },
   {
     "id": "windsor",
@@ -87,7 +272,26 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 21,
-    "attenuering": 67
+    "attenuering": 67,
+    "beskrivelse": "Engelsk ale-gær der efterlader markant malt-sødme og frugtig karakter. Lavere attenuering end Nottingham.",
+    "smagsprofil": "Frugtig og sød med markant malt-karakter. Efterlader mere restsødme.",
+    "esterprofil": "Moderat til høj med frugtige noter af æble og pære.",
+    "flokkulering": "lav",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 9% ABV",
+    "oprindelse": "England",
+    "pitchingRate": "1 pakke til 20-23L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": [
+      "English Bitter",
+      "Mild",
+      "Brown Ale",
+      "Sweet Stout",
+      "Porter",
+      "ESB"
+    ],
+    "alternativer": ["Safale S-04", "Wyeast 1968 London ESB", "London ESB"],
+    "noter": "Lav flokkulering efterlader uklar øl - filtrering anbefales for klarhed. God til sødere engelske stilarter."
   },
   {
     "id": "london-esb",
@@ -96,7 +300,23 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 22,
-    "attenuering": 72
+    "attenuering": 72,
+    "beskrivelse": "Engelsk ale-gær fra Fuller's bryggeri. Kompleks frugtig karakter med markant malt-sødme.",
+    "smagsprofil": "Rig frugtig karakter med komplekse estere og malt-sødme. Klassisk engelsk ale-karakter.",
+    "esterprofil": "Høj med komplekse frugt-noter. Typisk Fuller's karakter.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 10% ABV",
+    "oprindelse": "England (Fuller's Brewery)",
+    "pitchingRate": "1 pakke til 20-23L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": ["ESB", "English Bitter", "Pale Ale", "Barleywine", "Old Ale"],
+    "alternativer": [
+      "Wyeast 1968 London ESB",
+      "Fuller's strain",
+      "Windsor (lidt anderledes)"
+    ],
+    "noter": "Kræver 2-3 uger modning for at udvikle fuld karakter. Flot frugtig karakter der komplimenterer engelsk malt."
   },
   {
     "id": "belle-saison",
@@ -105,7 +325,28 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 35,
-    "attenuering": 89
+    "attenuering": 89,
+    "beskrivelse": "Belgisk saison-gær med ekstrem høj attenuering. Kan gære ved meget høje temperaturer. Meget tør finish.",
+    "smagsprofil": "Meget tør med krydret, peber-agtig karakter. Frugtig og kompleks.",
+    "esterprofil": "Høj med frugtige og krydrede noter typisk for saison.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "hurtig",
+    "alkoholTolerance": "Op til 15% ABV",
+    "oprindelse": "Belgien",
+    "pitchingRate": "1 pakke til 20-23L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": [
+      "Saison",
+      "Farmhouse Ale",
+      "Belgian Pale Ale",
+      "Bière de Garde"
+    ],
+    "alternativer": [
+      "Wyeast 3711 French Saison",
+      "White Labs WLP565 Belgian Saison",
+      "Safbrew T-58 (ligner men ikke identisk)"
+    ],
+    "noter": "Kan gære op til 35°C! Ideel til sommerbrygning uden temperaturkontrol. Meget høj attenuering giver tøre øl."
   },
   {
     "id": "abbaye",
@@ -114,7 +355,28 @@
     "type": "overgaeret",
     "tempMin": 17,
     "tempMax": 25,
-    "attenuering": 82
+    "attenuering": 82,
+    "beskrivelse": "Belgisk abbey-gær med kompleks frugtig og krydret karakter. God til belgiske stærke ales.",
+    "smagsprofil": "Kompleks med frugtige estere og subtile phenoler. Typisk belgisk abbey-karakter.",
+    "esterprofil": "Høj med frugtige noter og belgisk karakter.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 12% ABV",
+    "oprindelse": "Belgien",
+    "pitchingRate": "1 pakke til 20-23L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": [
+      "Belgian Dubbel",
+      "Belgian Tripel",
+      "Quadrupel",
+      "Belgian Dark Strong Ale"
+    ],
+    "alternativer": [
+      "Safbrew T-58",
+      "Safbrew BE-256",
+      "Wyeast 1214 Belgian Abbey"
+    ],
+    "noter": "God balance mellem frugtighed og krydderi. Kræver 2-4 uger modning for fuld udvikling."
   },
   {
     "id": "diamond-lager",
@@ -123,7 +385,29 @@
     "type": "undergaeret",
     "tempMin": 10,
     "tempMax": 15,
-    "attenuering": 77
+    "attenuering": 77,
+    "beskrivelse": "Tjekkisk lager-gær med kraftig gæring og god flokkulering. Ideel til tjekkiske og tyske pilsnere.",
+    "smagsprofil": "Ren med subtil malt-sødme og let frugtighed. God balance.",
+    "esterprofil": "Meget lav ved korrekt temperatur. Minimal ester-produktion.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 10% ABV",
+    "oprindelse": "Tjekkiet",
+    "pitchingRate": "2 pakker til 20L ved lager-temperaturer",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": [
+      "Czech Pilsner",
+      "Bohemian Pilsner",
+      "German Pilsner",
+      "Märzen",
+      "Vienna Lager"
+    ],
+    "alternativer": [
+      "Saflager S-23",
+      "Wyeast 2278 Czech Pils",
+      "Fermentis W-34/70 (lidt anderledes)"
+    ],
+    "noter": "Traditionel tjekkisk stamme. God flokkulering efter 4-6 ugers kold lagring."
   },
   {
     "id": "bry-97",
@@ -132,7 +416,29 @@
     "type": "overgaeret",
     "tempMin": 15,
     "tempMax": 22,
-    "attenuering": 80
+    "attenuering": 80,
+    "beskrivelse": "Amerikansk West Coast ale-gær. Neutral profil med høj flokkulering. Alternativ til Chico-gær (US-05).",
+    "smagsprofil": "Meget neutral og ren. Lader humlen dominere. Lidt mere karakter end US-05.",
+    "esterprofil": "Lav. Subtil frugtighed sammenlignet med andre amerikanske gær.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 11% ABV",
+    "oprindelse": "USA (West Coast)",
+    "pitchingRate": "1 pakke til 20-23L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": [
+      "American Pale Ale",
+      "IPA",
+      "Double IPA",
+      "American Amber",
+      "West Coast IPA"
+    ],
+    "alternativer": [
+      "Safale US-05",
+      "Wyeast 1056 American Ale",
+      "White Labs WLP001 California Ale"
+    ],
+    "noter": "Kræver 2-3 dages 'lag-time' før synlig aktivitet starter. Fremragende flokkulering."
   },
   {
     "id": "verdant-ipa",
@@ -141,7 +447,19 @@
     "type": "overgaeret",
     "tempMin": 18,
     "tempMax": 23,
-    "attenuering": 78
+    "attenuering": 78,
+    "beskrivelse": "Engelsk ale-gær perfektioneret til IPA. Producerer både frugtige estere der komplimenterer humlen og stabil gæring.",
+    "smagsprofil": "Frugtig med komplekse estere der komplimenterer moderne humle-varianter. Lidt sødere finish.",
+    "esterprofil": "Moderat til høj med komplekse frugt-noter ideelle til IPA.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 10% ABV",
+    "oprindelse": "England (Verdant Brewing Co.)",
+    "pitchingRate": "1 pakke til 20-23L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": ["IPA", "NEIPA", "Pale Ale", "Hazy IPA", "Double IPA"],
+    "alternativer": ["London Ale III (Wyeast 1318)", "Lallemand New England"],
+    "noter": "Udviklet specifikt til moderne IPA'er. Giver flot balance mellem gær-karakter og humle."
   },
   {
     "id": "new-england",
@@ -150,7 +468,19 @@
     "type": "overgaeret",
     "tempMin": 16,
     "tempMax": 22,
-    "attenuering": 78
+    "attenuering": 78,
+    "beskrivelse": "Engelsk ale-gær ideel til hazy/juicy IPA'er. Laver øllet lidt sødere og mindre tørt med frugtige estere.",
+    "smagsprofil": "Frugtig med tropiske noter og blød finish. Beholder sødme for juicy karakter.",
+    "esterprofil": "Høj med tropiske og stenfrugt-noter ideelle til hazy IPA.",
+    "flokkulering": "lav",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 10% ABV",
+    "oprindelse": "England",
+    "pitchingRate": "1 pakke til 20-23L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten eller rehydreres",
+    "oeltyper": ["NEIPA", "Hazy IPA", "Juicy IPA", "New England Pale Ale"],
+    "alternativer": ["London Ale III", "Wyeast 1318", "Verdant IPA (ligner)"],
+    "noter": "Lav flokkulering hjælper med at bevare haze i NEIPA. Giver blød mundfølelse og tropisk frugtighed."
   },
   {
     "id": "voss-kveik",
@@ -159,7 +489,25 @@
     "type": "overgaeret",
     "tempMin": 25,
     "tempMax": 40,
-    "attenuering": 80
+    "attenuering": 80,
+    "beskrivelse": "Norsk traditionel kveik-gær fra Voss. Kan gære ved ekstremt høje temperaturer uden ubehagelige smage. Frugtig med appelsin-noter.",
+    "smagsprofil": "Frugtig med markante appelsin- og citrus-noter. Ren gæring selv ved høje temperaturer.",
+    "esterprofil": "Moderat med frugtige appelsin-noter og subtil krydderi.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "meget hurtig",
+    "alkoholTolerance": "Op til 12% ABV",
+    "oprindelse": "Norge (Voss)",
+    "pitchingRate": "1 pakke til 20-23L (ingen rehydrering nødvendig)",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten",
+    "oeltyper": [
+      "Norwegian Farmhouse Ale",
+      "IPA",
+      "Pale Ale",
+      "Imperial Stout",
+      "Barleywine"
+    ],
+    "alternativer": ["Omega Voss Kveik", "Escarpment Voss Kveik"],
+    "noter": "Kan gære ved 40°C! Typisk færdig på 2-3 dage selv ved høje temperaturer. Spar gær: kan genbruges mange gange."
   },
   {
     "id": "lutra-kveik",
@@ -168,7 +516,22 @@
     "type": "overgaeret",
     "tempMin": 20,
     "tempMax": 37,
-    "attenuering": 79
+    "attenuering": 79,
+    "beskrivelse": "Norsk kveik-gær der giver meget neutral profil selv ved høje temperaturer. 'Pseudo-lager' muligheder.",
+    "smagsprofil": "Meget neutral og ren selv ved 35°C. Lager-lignende renhed med ale-hastighed.",
+    "esterprofil": "Meget lav. Næsten ingen frugtighed ved korrekt temperatur.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "meget hurtig",
+    "alkoholTolerance": "Op til 11% ABV",
+    "oprindelse": "Norge",
+    "pitchingRate": "1 pakke til 20-23L",
+    "rehydrering": "Valgfrit: Kan drysses direkte på mosten",
+    "oeltyper": ["Pseudo-lager", "Kölsch", "Cream Ale", "IPA", "Pale Ale"],
+    "alternativer": [
+      "Lallemand Voss Kveik (men Voss er mere frugtig)",
+      "Omega Hothead"
+    ],
+    "noter": "Ideel til 'pseudo-lager' - giver lager-lignende renhed ved ale-temperaturer. Kan gære ved 20-37°C."
   },
   {
     "id": "mangrove-m44",
@@ -177,7 +540,25 @@
     "type": "overgaeret",
     "tempMin": 16,
     "tempMax": 22,
-    "attenuering": 82
+    "attenuering": 82,
+    "beskrivelse": "Amerikansk West Coast ale-gær med neutral profil. God til humlede øl hvor gæren ikke skal dominere.",
+    "smagsprofil": "Neutral med subtil frugtighed. Lader humlen og malten tale.",
+    "esterprofil": "Lav med let frugtighed.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 10% ABV",
+    "oprindelse": "USA",
+    "pitchingRate": "1 pakke til 20-23L",
+    "rehydrering": "Anbefales: Rehydrer i lunkent vand før pitching",
+    "oeltyper": [
+      "American Pale Ale",
+      "IPA",
+      "Double IPA",
+      "Amber Ale",
+      "Brown Ale"
+    ],
+    "alternativer": ["Safale US-05", "Lallemand BRY-97", "Wyeast 1056"],
+    "noter": "Må ikke forveksles med M44 US West Coast (samme). God alsidig amerikansk gær."
   },
   {
     "id": "mangrove-m36",
@@ -186,7 +567,19 @@
     "type": "overgaeret",
     "tempMin": 18,
     "tempMax": 23,
-    "attenuering": 72
+    "attenuering": 72,
+    "beskrivelse": "Engelsk ale-gær med frugtig karakter og god flokkulering. Tilpasser sig forskellige stilarter.",
+    "smagsprofil": "Frugtig med komplekse estere og god malt-karakter. Typisk engelsk ale-smag.",
+    "esterprofil": "Moderat med frugtige noter af æble og pære.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 9% ABV",
+    "oprindelse": "England",
+    "pitchingRate": "1 pakke til 20-23L",
+    "rehydrering": "Anbefales: Rehydrer i lunkent vand før pitching",
+    "oeltyper": ["English Bitter", "Pale Ale", "Brown Ale", "Porter", "ESB"],
+    "alternativer": ["Safale S-04", "Lallemand Nottingham", "Wyeast 1098"],
+    "noter": "God balance mellem frugtighed og neutralitet. Høj flokkulering giver klar øl."
   },
   {
     "id": "mangrove-m54",
@@ -195,7 +588,27 @@
     "type": "undergaeret",
     "tempMin": 10,
     "tempMax": 14,
-    "attenuering": 78
+    "attenuering": 78,
+    "beskrivelse": "Hybrid lager-gær der kan gære ved ale-temperaturer men giver lager-karakter. Ideel til California Common og lignende.",
+    "smagsprofil": "Ren med subtil frugtighed. Fungerer ved både lave og moderate temperaturer.",
+    "esterprofil": "Lav til moderat afhængig af temperatur.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 9% ABV",
+    "oprindelse": "USA",
+    "pitchingRate": "1 pakke til 20-23L",
+    "rehydrering": "Anbefales: Rehydrer i lunkent vand før pitching",
+    "oeltyper": [
+      "California Common",
+      "Cream Ale",
+      "Pale Lager",
+      "Pseudo-lager"
+    ],
+    "alternativer": [
+      "Wyeast 2112 California Lager",
+      "White Labs WLP810 San Francisco Lager"
+    ],
+    "noter": "Kan gære op til 18°C med godt resultat. God til 'steam beer' stilen."
   },
   {
     "id": "mangrove-m76",
@@ -204,7 +617,30 @@
     "type": "undergaeret",
     "tempMin": 8,
     "tempMax": 14,
-    "attenuering": 77
+    "attenuering": 77,
+    "beskrivelse": "Tysk lager-gær med fremragende gæringsegenskaber og god maltsmag. Ideel til tyske lagere.",
+    "smagsprofil": "Ren med god malt-karakter og subtil sødme. Typisk tysk lager-profil.",
+    "esterprofil": "Meget lav ved korrekte temperaturer.",
+    "flokkulering": "høj",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 9% ABV",
+    "oprindelse": "Tyskland",
+    "pitchingRate": "2 pakker til 20L ved lager-temperaturer",
+    "rehydrering": "Anbefales: Rehydrer i lunkent vand før pitching",
+    "oeltyper": [
+      "Helles",
+      "Dortmunder",
+      "Märzen",
+      "Oktoberfest",
+      "Bock",
+      "Doppelbock"
+    ],
+    "alternativer": [
+      "Saflager W-34/70",
+      "Wyeast 2124 Bohemian Lager",
+      "Lallemand Diamond"
+    ],
+    "noter": "God til tyske malt-fremhævede lagere. Kræver kold lagring (4-6 uger) for bedste resultat."
   },
   {
     "id": "mangrove-m21",
@@ -213,7 +649,22 @@
     "type": "overgaeret",
     "tempMin": 18,
     "tempMax": 25,
-    "attenuering": 76
+    "attenuering": 76,
+    "beskrivelse": "Belgisk hvede-gær med subtil phenol-karakter. Ideel til witbier og andre belgiske hvedeøl.",
+    "smagsprofil": "Subtil krydret/phenol karakter med frugtighed. God til belgiske hvedeøl.",
+    "esterprofil": "Moderat med frugtige noter og let krydderi.",
+    "flokkulering": "lav",
+    "gaeringsHastighed": "medium",
+    "alkoholTolerance": "Op til 9% ABV",
+    "oprindelse": "Belgien",
+    "pitchingRate": "1 pakke til 20-23L",
+    "rehydrering": "Anbefales: Rehydrer i lunkent vand før pitching",
+    "oeltyper": ["Witbier", "Belgian Wheat", "White Ale", "Belgian Blonde"],
+    "alternativer": [
+      "Wyeast 3944 Belgian Witbier",
+      "White Labs WLP400 Belgian Wit"
+    ],
+    "noter": "Producerer subtile phenoler der komplimenterer koriander og appelsinskal i witbier."
   },
   {
     "id": "mangrove-m29",
@@ -222,6 +673,22 @@
     "type": "overgaeret",
     "tempMin": 26,
     "tempMax": 32,
-    "attenuering": 89
+    "attenuering": 89,
+    "beskrivelse": "Fransk saison-gær med høj attenuering og krydret karakter. Kan gære ved høje temperaturer.",
+    "smagsprofil": "Tør med krydret, peber-agtig karakter og frugtighed. Typisk saison-karakter.",
+    "esterprofil": "Høj med frugtige og krydrede noter.",
+    "flokkulering": "medium",
+    "gaeringsHastighed": "hurtig",
+    "alkoholTolerance": "Op til 12% ABV",
+    "oprindelse": "Frankrig",
+    "pitchingRate": "1 pakke til 20-23L",
+    "rehydrering": "Anbefales: Rehydrer i lunkent vand før pitching",
+    "oeltyper": ["Saison", "Farmhouse Ale", "Bière de Garde"],
+    "alternativer": [
+      "Lallemand Belle Saison",
+      "Wyeast 3711 French Saison",
+      "Wyeast 3724 Belgian Saison"
+    ],
+    "noter": "Kan gære ved høje temperaturer (op til 32°C). Meget høj attenuering giver tør saison."
   }
 ]
