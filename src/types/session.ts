@@ -63,6 +63,9 @@ export interface LogEntry {
     sg?: number;
     ph?: number;
   };
+  order?: number; // Optional ordering field, defaults to timestamp-based
+  visDato?: boolean; // Whether date was explicitly selected by user
+  visTid?: boolean; // Whether time was explicitly selected by user
 }
 
 export interface BrewingSession {
