@@ -137,7 +137,7 @@ function DraggableLogEntry({
     scheduleOnRN(onEdit);
   });
 
-  const composedGesture = Gesture.Simultaneous(panGesture, tapGesture);
+  const composedGesture = Gesture.Exclusive(panGesture, tapGesture);
 
   return (
     <GestureDetector gesture={composedGesture}>
