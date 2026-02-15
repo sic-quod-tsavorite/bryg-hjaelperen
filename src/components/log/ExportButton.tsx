@@ -23,7 +23,7 @@ export function ExportButton({ session }: ExportButtonProps) {
   const resolvedTheme = useResolvedTheme();
   const isDark = resolvedTheme === 'dark';
 
-  const generateHTML = () => {
+  const generateHTML = async () => {
     const abv =
       session.faktiskOG && session.faktiskFG
         ? calculateABV(session.faktiskOG, session.faktiskFG)
@@ -35,6 +35,56 @@ export function ExportButton({ session }: ExportButtonProps) {
       session.faktiskOG && session.faktiskFG
         ? calculateAttenuation(session.faktiskOG, session.faktiskFG)
         : null;
+
+    // Helper function to convert blob to base64 data URL
+    const blobToBase64 = (blob: Blob): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const result = reader.result as string;
+          resolve(result);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    };
+
+    // Convert photos to base64 for embedding in HTML using modern File API
+    let photosHTML = '';
+    if (session.fotos && session.fotos.length > 0) {
+      try {
+        const photoDataPromises = session.fotos.map(async (uri) => {
+          try {
+            const response = await fetch(uri);
+            const blob = await response.blob();
+            const base64 = await blobToBase64(blob);
+            return base64;
+          } catch (error) {
+            console.error('Failed to read photo:', error);
+            return null;
+          }
+        });
+
+        const photoDataUrls = await Promise.all(photoDataPromises);
+        const validPhotos = photoDataUrls.filter(
+          (url): url is string => url !== null
+        );
+
+        if (validPhotos.length > 0) {
+          photosHTML = `
+          <div style="display: flex; gap: 24px; margin-bottom: 24px; align-items: flex-start;">
+            <img src="${validPhotos[0]}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 12px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+            <div style="flex: 1;">
+              <h1 style="margin: 0 0 12px 0; color: #1a7f45; border-bottom: 3px solid #1a7f45; padding-bottom: 12px; font-size: 28px;">${session.navn || 'Unavngivet bryg'}</h1>
+              ${session.beskrivelse ? `<p style="color: #525252; line-height: 1.6; margin: 0;">${session.beskrivelse}</p>` : ''}
+            </div>
+          </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Failed to process photos:', error);
+      }
+    }
 
     return `
       <!DOCTYPE html>
@@ -70,8 +120,16 @@ export function ExportButton({ session }: ExportButtonProps) {
         </style>
       </head>
       <body>
-        <h1>${session.navn || 'Unavngivet bryg'}</h1>
-        ${session.beskrivelse ? `<p style="color: #525252; line-height: 1.6;">${session.beskrivelse}</p>` : ''}
+        ${photosHTML}
+        ${
+          !photosHTML
+            ? `
+        <h1 style="color: #1a7f45; border-bottom: 3px solid #1a7f45; padding-bottom: 12px; font-size: 28px; margin: 0 0 12px 0;">${session.navn || 'Unavngivet bryg'}</h1>
+        ${session.beskrivelse ? `<p style="color: #525252; line-height: 1.6; margin: 0;">${session.beskrivelse}</p>` : ''}
+        <div style="height: 24px;"></div>
+        `
+            : ''
+        }
 
         <div class="stats">
           ${session.beregnetOG ? `<div class="stat"><div class="stat-value">${session.beregnetOG.toFixed(3)}</div><div class="stat-label">OG</div></div>` : ''}
@@ -134,35 +192,53 @@ export function ExportButton({ session }: ExportButtonProps) {
             : ''
         }
 
+        <div style="height: 24px;"></div>
         ${
           session.logIndlaeg.length > 0
             ? `
-        <h2>Bryggelog</h2>
-        ${session.logIndlaeg
-          .map(
-            (entry) => `
-          <div class="log-entry">
-            <div class="log-entry-header">
-              <span class="log-entry-type">${entry.titel}</span>
-              <span class="log-entry-date">${new Date(entry.dato).toLocaleDateString('da-DK')}</span>
-            </div>
-            ${entry.beskrivelse ? `<p style="color: #525252; margin: 8px 0 0 0;">${entry.beskrivelse}</p>` : ''}
-            ${
-              entry.maalinger
-                ? `
-              <div class="measurements">
-                ${entry.maalinger.temperatur !== undefined ? `<span class="measurement">Temp: ${entry.maalinger.temperatur}°C</span>` : ''}
-                ${entry.maalinger.sg !== undefined ? `<span class="measurement">SG: ${entry.maalinger.sg.toFixed(3)}</span>` : ''}
-                ${entry.maalinger.ph !== undefined ? `<span class="measurement">pH: ${entry.maalinger.ph.toFixed(1)}</span>` : ''}
+          <h2>Bryggelog</h2>
+          ${[...session.logIndlaeg]
+            .reverse()
+            .map(
+              (entry) => `
+            <div class="log-entry">
+              <div class="log-entry-header">
+                <span class="log-entry-type">${entry.titel}</span>
+                <span class="log-entry-date">${(() => {
+                  const parts: string[] = [];
+                  if (entry.visDato !== false) {
+                    parts.push(
+                      new Date(entry.dato).toLocaleDateString('da-DK')
+                    );
+                  }
+                  if (entry.visTid) {
+                    parts.push(
+                      new Date(entry.dato).toLocaleTimeString('da-DK', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })
+                    );
+                  }
+                  return parts.join(' : ');
+                })()}</span>
               </div>
-            `
-                : ''
-            }
-          </div>
-        `
-          )
-          .join('')}
-        `
+              ${entry.beskrivelse ? `<p style="color: #525252; margin: 8px 0 0 0;">${entry.beskrivelse}</p>` : ''}
+              ${
+                entry.maalinger
+                  ? `
+                <div class="measurements">
+                  ${entry.maalinger.temperatur !== undefined ? `<span class="measurement">Temp: ${entry.maalinger.temperatur}°C</span>` : ''}
+                  ${entry.maalinger.sg !== undefined ? `<span class="measurement">SG: ${entry.maalinger.sg.toFixed(3)}</span>` : ''}
+                  ${entry.maalinger.ph !== undefined ? `<span class="measurement">pH: ${entry.maalinger.ph.toFixed(1)}</span>` : ''}
+                </div>
+              `
+                  : ''
+              }
+            </div>
+          `
+            )
+            .join('')}
+          `
             : ''
         }
 
@@ -178,7 +254,7 @@ export function ExportButton({ session }: ExportButtonProps) {
     setIsExporting(true);
 
     try {
-      const html = generateHTML();
+      const html = await generateHTML();
 
       if (Platform.OS === 'web') {
         // For web, open print dialog using Blob URL
