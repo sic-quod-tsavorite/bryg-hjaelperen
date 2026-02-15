@@ -194,8 +194,14 @@ export default function LogTab() {
       dragOffset.value = 0;
       lastReorderId.value = null;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session.logIndlaeg]);
+  }, [
+    session.logIndlaeg,
+    draggedEntryId,
+    startIndex,
+    currentIndex,
+    dragOffset,
+    lastReorderId,
+  ]);
 
   return (
     <ScrollView
