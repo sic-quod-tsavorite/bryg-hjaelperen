@@ -13,6 +13,17 @@ import type {
 } from '../types/session';
 import { calculateOG, calculateIBU, calculateEBC } from '../utils/calculations';
 
+// Helper to reorder array based on provided IDs
+const reorderArray = <T extends { id: string }>(
+  array: T[],
+  orderedIds: string[]
+): T[] => {
+  const idToItem = new Map(array.map((item) => [item.id, item]));
+  return orderedIds
+    .map((id) => idToItem.get(id))
+    .filter((item): item is T => item !== undefined);
+};
+
 const SESSION_STORAGE_KEY = 'bryg-current-session';
 
 const genererID = () => Math.random().toString(36).substring(2, 11);
@@ -81,7 +92,9 @@ interface SessionStore {
   addPhoto: (uri: string) => void;
   removePhoto: (uri: string) => void;
   addLogEntry: (entry: LogEntry) => void;
+  updateLogEntry: (id: string, updates: Partial<LogEntry>) => void;
   removeLogEntry: (id: string) => void;
+  reorderLogEntries: (orderedIds: string[]) => void;
 
   // Calculations
   recalculate: () => void;
@@ -295,10 +308,28 @@ export const useSessionStore = create<SessionStore>()(
         }));
       },
 
+      updateLogEntry: (id: string, updates: Partial<LogEntry>) => {
+        set((state) => ({
+          session: withUpdate(state.session, {
+            logIndlaeg: state.session.logIndlaeg.map((e) =>
+              e.id === id ? { ...e, ...updates } : e
+            ),
+          }),
+        }));
+      },
+
       removeLogEntry: (id) => {
         set((state) => ({
           session: withUpdate(state.session, {
             logIndlaeg: state.session.logIndlaeg.filter((e) => e.id !== id),
+          }),
+        }));
+      },
+
+      reorderLogEntries: (orderedIds) => {
+        set((state) => ({
+          session: withUpdate(state.session, {
+            logIndlaeg: reorderArray(state.session.logIndlaeg, orderedIds),
           }),
         }));
       },

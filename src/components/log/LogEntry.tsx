@@ -30,42 +30,81 @@ const typeIcons: Record<LogType, keyof typeof Ionicons.glyphMap> = {
 interface LogEntryProps {
   entry: LogEntryType;
   onRemove: () => void;
+  onEdit?: () => void;
+  visualIndex: number;
 }
 
-export function LogEntryDisplay({ entry, onRemove }: LogEntryProps) {
+export function LogEntryDisplay({
+  entry,
+  onRemove,
+  onEdit,
+  visualIndex,
+}: LogEntryProps) {
   const resolvedTheme = useResolvedTheme();
   const isDark = resolvedTheme === 'dark';
 
-  const formattedDate = new Date(entry.dato).toLocaleDateString('da-DK', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  // Format date/time based on what was explicitly selected by user
+  const formatDateTimeDisplay = () => {
+    const parts: string[] = [typeLabels[entry.type]];
+
+    if (entry.visDato) {
+      const dateStr = new Date(entry.dato).toLocaleDateString('da-DK', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      });
+      parts.push(dateStr);
+    }
+
+    if (entry.visTid) {
+      const timeStr = new Date(entry.dato).toLocaleTimeString('da-DK', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+      parts.push(timeStr);
+    }
+
+    return parts.join(' • ');
+  };
 
   return (
     <View className="mb-3 rounded-xl border border-border bg-surface-elevated p-4 shadow-sm dark:border-border-dark dark:bg-surface-elevated-dark">
       <View className="flex-row items-start justify-between">
-        <View className="flex-1 flex-row items-center">
-          <View className="mr-3 h-11 w-11 items-center justify-center rounded-xl bg-primary-subtle dark:bg-surface-dark">
-            <Ionicons
-              name={typeIcons[entry.type]}
-              size={22}
-              color={isDark ? '#4ade80' : '#1a7f45'}
-            />
-          </View>
-          <View className="flex-1">
-            <Text className="text-base font-semibold text-text-primary dark:text-text-primary-dark">
-              {entry.titel}
-            </Text>
-            <Text className="mt-0.5 text-xs text-text-tertiary dark:text-text-tertiary-dark">
-              {typeLabels[entry.type]} • {formattedDate}
-            </Text>
-          </View>
-        </View>
         <Pressable
-          onPress={onRemove}
+          className="mr-3 h-11 w-11 items-center justify-center rounded-xl bg-primary-subtle dark:bg-surface-dark"
+          accessibilityLabel={`Træk logindlæg ${visualIndex + 1}`}
+          accessibilityHint="Hold nede for at flytte logindlæg"
+        >
+          <Ionicons
+            name="reorder-four-outline"
+            size={22}
+            color={isDark ? '#4ade80' : '#1a7f45'}
+          />
+        </Pressable>
+        <Pressable onPress={onEdit} className="flex-1 flex-row items-center">
+          <View className="flex-1 flex-row items-center">
+            <View className="mr-3 h-11 w-11 items-center justify-center rounded-xl bg-primary-subtle dark:bg-surface-dark">
+              <Ionicons
+                name={typeIcons[entry.type]}
+                size={22}
+                color={isDark ? '#4ade80' : '#1a7f45'}
+              />
+            </View>
+            <View className="flex-1">
+              <Text className="text-base font-semibold text-text-primary dark:text-text-primary-dark">
+                {entry.titel}
+              </Text>
+              <Text className="mt-0.5 text-xs text-text-tertiary dark:text-text-tertiary-dark">
+                {formatDateTimeDisplay()}
+              </Text>
+            </View>
+          </View>
+        </Pressable>
+        <Pressable
+          onPress={(e) => {
+            e.stopPropagation();
+            onRemove();
+          }}
           className="h-8 w-8 items-center justify-center rounded-full bg-error-bg dark:bg-error-bg-dark"
         >
           <Ionicons name="trash-outline" size={16} color="#dc2626" />
