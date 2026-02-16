@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { ScrollView, View, Text, TextInput } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { Gesture } from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -19,24 +19,18 @@ import { PhotoPicker } from '../../src/components/log/PhotoPicker';
 import { StylePicker } from '../../src/components/setup/StylePicker';
 import { useResolvedTheme } from '../../src/components/ThemeProvider';
 import { useSessionStore } from '../../src/store/sessionStore';
-import type {
-  BrewingSession,
-  LogEntry as LogEntryType,
-} from '../../src/types/session';
+import type { LogEntry as LogEntryType } from '../../src/types/session';
 
 interface DraggableLogEntryProps {
   entry: LogEntryType;
   visualIndex: number;
   onRemove: () => void;
   onEdit: () => void;
-  totalCount: number;
   draggedId: SharedValue<string | null>;
   dragOffset: SharedValue<number>;
   startIndex: SharedValue<number | null>;
   currentIndex: SharedValue<number | null>;
-  lastReorderId: SharedValue<string | null>;
-  onReorder: (orderedIds: string[]) => void;
-  session: BrewingSession;
+  panGesture: ReturnType<typeof Gesture.Pan>;
 }
 
 const ENTRY_HEIGHT = 120; // Approximate height including gap
@@ -46,14 +40,11 @@ function DraggableLogEntry({
   visualIndex,
   onRemove,
   onEdit,
-  totalCount,
   draggedId,
   dragOffset,
   startIndex,
   currentIndex,
-  lastReorderId,
-  onReorder,
-  session,
+  panGesture,
 }: DraggableLogEntryProps) {
   const isDragged = useDerivedValue(() => draggedId.value === entry.id);
 
@@ -92,64 +83,16 @@ function DraggableLogEntry({
     return { transform: [{ translateY: withSpring(targetShift) }] };
   });
 
-  const panGesture = Gesture.Pan()
-    .onBegin(() => {
-      draggedId.value = entry.id;
-      startIndex.value = visualIndex;
-      currentIndex.value = visualIndex;
-      dragOffset.value = 0;
-    })
-    .onUpdate((event) => {
-      dragOffset.value = event.translationY;
-      // Calculate current position in real-time
-      const startIdx = startIndex.value ?? visualIndex;
-      const delta = Math.round(event.translationY / ENTRY_HEIGHT);
-      const newIndex = Math.max(0, Math.min(totalCount - 1, startIdx + delta));
-      currentIndex.value = newIndex;
-    })
-    .onEnd(() => {
-      const startIdx = startIndex.value ?? visualIndex;
-      const currIdx = currentIndex.value ?? visualIndex;
-
-      const fromActualIndex = totalCount - 1 - startIdx;
-      const toActualIndex = totalCount - 1 - currIdx;
-
-      if (fromActualIndex !== toActualIndex) {
-        // Mark reordering so useEffect knows to reset values after render
-        lastReorderId.value = entry.id;
-        const newOrder = [...session.logIndlaeg];
-        const [removed] = newOrder.splice(fromActualIndex, 1);
-        newOrder.splice(toActualIndex, 0, removed);
-        scheduleOnRN(
-          onReorder,
-          newOrder.map((e) => e.id)
-        );
-      } else {
-        // No reorder happened, reset immediately
-        draggedId.value = null;
-        startIndex.value = null;
-        currentIndex.value = null;
-        dragOffset.value = 0;
-      }
-    });
-
-  const tapGesture = Gesture.Tap().onEnd(() => {
-    scheduleOnRN(onEdit);
-  });
-
-  const composedGesture = Gesture.Exclusive(panGesture, tapGesture);
-
   return (
-    <GestureDetector gesture={composedGesture}>
-      <Animated.View style={animatedStyle}>
-        <LogEntryDisplay
-          entry={entry}
-          onRemove={onRemove}
-          onEdit={onEdit}
-          visualIndex={visualIndex}
-        />
-      </Animated.View>
-    </GestureDetector>
+    <Animated.View style={animatedStyle}>
+      <LogEntryDisplay
+        entry={entry}
+        onRemove={onRemove}
+        onEdit={onEdit}
+        visualIndex={visualIndex}
+        dragGesture={panGesture}
+      />
+    </Animated.View>
   );
 }
 
@@ -276,6 +219,51 @@ export default function LogTab() {
         {session.logIndlaeg.length > 0 && (
           <View className="mt-4 gap-2">
             {reversedEntries.map((entry, visualIndex) => {
+              const totalCount = session.logIndlaeg.length;
+              const panGesture = Gesture.Pan()
+                .onBegin(() => {
+                  draggedEntryId.value = entry.id;
+                  startIndex.value = visualIndex;
+                  currentIndex.value = visualIndex;
+                  dragOffset.value = 0;
+                })
+                .onUpdate((event) => {
+                  dragOffset.value = event.translationY;
+                  // Calculate current position in real-time
+                  const startIdx = startIndex.value ?? visualIndex;
+                  const delta = Math.round(event.translationY / ENTRY_HEIGHT);
+                  const newIndex = Math.max(
+                    0,
+                    Math.min(totalCount - 1, startIdx + delta)
+                  );
+                  currentIndex.value = newIndex;
+                })
+                .onEnd(() => {
+                  const startIdx = startIndex.value ?? visualIndex;
+                  const currIdx = currentIndex.value ?? visualIndex;
+
+                  const fromActualIndex = totalCount - 1 - startIdx;
+                  const toActualIndex = totalCount - 1 - currIdx;
+
+                  if (fromActualIndex !== toActualIndex) {
+                    // Mark reordering so useEffect knows to reset values after render
+                    lastReorderId.value = entry.id;
+                    const newOrder = [...session.logIndlaeg];
+                    const [removed] = newOrder.splice(fromActualIndex, 1);
+                    newOrder.splice(toActualIndex, 0, removed);
+                    scheduleOnRN(
+                      reorderLogEntries,
+                      newOrder.map((e) => e.id)
+                    );
+                  } else {
+                    // No reorder happened, reset immediately
+                    draggedEntryId.value = null;
+                    startIndex.value = null;
+                    currentIndex.value = null;
+                    dragOffset.value = 0;
+                  }
+                });
+
               return (
                 <DraggableLogEntry
                   key={entry.id}
@@ -283,14 +271,11 @@ export default function LogTab() {
                   visualIndex={visualIndex}
                   onRemove={() => removeLogEntry(entry.id)}
                   onEdit={() => setEditingEntryId(entry.id)}
-                  totalCount={session.logIndlaeg.length}
                   draggedId={draggedEntryId}
                   dragOffset={dragOffset}
                   startIndex={startIndex}
                   currentIndex={currentIndex}
-                  lastReorderId={lastReorderId}
-                  onReorder={reorderLogEntries}
-                  session={session}
+                  panGesture={panGesture}
                 />
               );
             })}

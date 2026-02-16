@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { View, Text, Pressable } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 import type {
   LogEntry as LogEntryType,
@@ -32,6 +33,7 @@ interface LogEntryProps {
   onRemove: () => void;
   onEdit?: () => void;
   visualIndex: number;
+  dragGesture?: ReturnType<typeof Gesture.Pan>;
 }
 
 export function LogEntryDisplay({
@@ -39,6 +41,7 @@ export function LogEntryDisplay({
   onRemove,
   onEdit,
   visualIndex,
+  dragGesture,
 }: LogEntryProps) {
   const resolvedTheme = useResolvedTheme();
   const isDark = resolvedTheme === 'dark';
@@ -70,17 +73,33 @@ export function LogEntryDisplay({
   return (
     <View className="mb-3 rounded-xl border border-border bg-surface-elevated p-4 shadow-sm dark:border-border-dark dark:bg-surface-elevated-dark">
       <View className="flex-row items-start justify-between">
-        <Pressable
-          className="mr-3 h-11 w-11 items-center justify-center rounded-xl bg-primary-subtle dark:bg-surface-dark"
-          accessibilityLabel={`Træk logindlæg ${visualIndex + 1}`}
-          accessibilityHint="Hold nede for at flytte logindlæg"
-        >
-          <Ionicons
-            name="reorder-four-outline"
-            size={22}
-            color={isDark ? '#4ade80' : '#1a7f45'}
-          />
-        </Pressable>
+        {dragGesture ? (
+          <GestureDetector gesture={dragGesture}>
+            <Pressable
+              className="mr-3 h-11 w-11 items-center justify-center rounded-xl bg-primary-subtle dark:bg-surface-dark"
+              accessibilityLabel={`Træk logindlæg ${visualIndex + 1}`}
+              accessibilityHint="Hold nede for at flytte logindlæg"
+            >
+              <Ionicons
+                name="reorder-four-outline"
+                size={22}
+                color={isDark ? '#4ade80' : '#1a7f45'}
+              />
+            </Pressable>
+          </GestureDetector>
+        ) : (
+          <Pressable
+            className="mr-3 h-11 w-11 items-center justify-center rounded-xl bg-primary-subtle dark:bg-surface-dark"
+            accessibilityLabel={`Træk logindlæg ${visualIndex + 1}`}
+            accessibilityHint="Hold nede for at flytte logindlæg"
+          >
+            <Ionicons
+              name="reorder-four-outline"
+              size={22}
+              color={isDark ? '#4ade80' : '#1a7f45'}
+            />
+          </Pressable>
+        )}
         <Pressable onPress={onEdit} className="flex-1 flex-row items-center">
           <View className="flex-1 flex-row items-center">
             <View className="mr-3 h-11 w-11 items-center justify-center rounded-xl bg-primary-subtle dark:bg-surface-dark">
