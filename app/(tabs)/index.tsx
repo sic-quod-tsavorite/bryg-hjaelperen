@@ -55,6 +55,7 @@ export default function SetupTab() {
     addYeast,
     updateYeast,
     removeYeast,
+    setFaktiskOG,
     resetSession,
   } = useSessionStore();
 
@@ -108,6 +109,8 @@ export default function SetupTab() {
               malts={session.malts}
               hops={session.hops}
               volumeLiter={session.volumeLiter}
+              faktiskOG={session.faktiskOG}
+              onOGChange={setFaktiskOG}
             />
 
             {/* Volume input */}

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, Text, Pressable, TextInput } from 'react-native';
 
 import type { SessionMalt, SessionHop } from '../../types/session';
 import {
@@ -15,23 +15,69 @@ interface CalculationsCardProps {
   malts: SessionMalt[];
   hops: SessionHop[];
   volumeLiter: number;
+  faktiskOG: number | null;
+  onOGChange: (og: number | null) => void;
 }
 
 export function CalculationsCard({
   malts,
   hops,
   volumeLiter,
+  faktiskOG,
+  onOGChange,
 }: CalculationsCardProps) {
-  const og = calculateOG(malts, volumeLiter);
+  const calculatedOG = calculateOG(malts, volumeLiter);
+  const displayOG = faktiskOG ?? calculatedOG;
+  const isOverridden = faktiskOG !== null;
   const ebc = calculateEBC(malts, volumeLiter);
-  const ibu = calculateIBU(hops, volumeLiter, og);
+  const ibu = calculateIBU(hops, volumeLiter, displayOG);
   const colorHex = ebcToColor(ebc);
   const colorDesc = getColorDescription(ebc);
-  const bitternessDesc = getBitternessDescription(ibu, og);
+  const bitternessDesc = getBitternessDescription(ibu, displayOG);
   const [showBUGU, setShowBUGU] = useState(false);
   const [showEBC, setShowEBC] = useState(false);
-  const gravityUnits = (og - 1) * 1000;
+  const gravityUnits = (displayOG - 1) * 1000;
   const buguRatio = gravityUnits > 0 ? (ibu / gravityUnits).toFixed(2) : '0';
+
+  const [ogText, setOgText] = useState(() => {
+    return faktiskOG !== null ? faktiskOG.toFixed(3) : calculatedOG.toFixed(3);
+  });
+  const [isFocused, setIsFocused] = useState(false);
+
+  // Sync local text from store when not focused
+  useEffect(() => {
+    if (!isFocused) {
+      setOgText(
+        faktiskOG !== null ? faktiskOG.toFixed(3) : calculatedOG.toFixed(3)
+      );
+    }
+  }, [faktiskOG, isFocused, calculatedOG]);
+
+  const handleOGChange = (text: string) => {
+    if (text === '') {
+      setOgText('');
+      onOGChange(null);
+      return;
+    }
+
+    const cleanText = text.replace(',', '.');
+
+    if (!/^\d*\.?\d*$/.test(cleanText)) {
+      return;
+    }
+
+    setOgText(cleanText);
+
+    const num = parseFloat(cleanText);
+
+    if (isNaN(num)) {
+      return;
+    }
+
+    if (num < 1 || num > 1.2) return;
+
+    onOGChange(num);
+  };
 
   return (
     <View className="mt-6 rounded-xl bg-surface-elevated p-5 shadow-md dark:bg-surface-elevated-dark">
@@ -40,11 +86,31 @@ export function CalculationsCard({
       </Text>
 
       <View className="flex-row justify-between">
-        {/* OG */}
+        {/* OG - Editable */}
         <View className="items-center">
-          <Text className="text-3xl font-bold text-primary dark:text-primary-light">
-            {og.toFixed(3)}
-          </Text>
+          <TextInput
+            className={`text-3xl font-bold ${
+              isOverridden
+                ? 'text-warning'
+                : 'text-primary dark:text-primary-light'
+            }`}
+            style={{
+              textAlign: 'center',
+              minWidth: 80,
+              padding: 0,
+              margin: 0,
+              includeFontPadding: false,
+              textAlignVertical: 'center',
+            }}
+            value={ogText}
+            onChangeText={handleOGChange}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            placeholder={calculatedOG.toFixed(3)}
+            placeholderTextColor={isOverridden ? '#d97706' : '#1a7f45'}
+            keyboardType="decimal-pad"
+            inputMode="decimal"
+          />
           <Text className="mt-1 text-xs font-medium uppercase tracking-wide text-text-tertiary dark:text-text-tertiary-dark">
             OG
           </Text>
