@@ -4,14 +4,25 @@ import { calculateABV, calculateAttenuation } from '../../utils/calculations';
 import { NumberInput } from '../common/NumberInput';
 
 interface FGInputProps {
-  og: number | null;
+  calculatedOG: number | null;
+  faktiskOG: number | null;
   fg: number | null;
+  onOGChange: (og: number | null) => void;
   onFGChange: (fg: number | null) => void;
 }
 
-export function FGInput({ og, fg, onFGChange }: FGInputProps) {
-  const abv = og && fg ? calculateABV(og, fg) : null;
-  const attenuation = og && fg ? calculateAttenuation(og, fg) : null;
+export function FGInput({
+  calculatedOG,
+  faktiskOG,
+  fg,
+  onOGChange,
+  onFGChange,
+}: FGInputProps) {
+  const displayOG = faktiskOG ?? calculatedOG;
+  const abv = displayOG && fg ? calculateABV(displayOG, fg) : null;
+  const attenuation =
+    displayOG && fg ? calculateAttenuation(displayOG, fg) : null;
+  const isOGOverridden = faktiskOG !== null;
 
   return (
     <View className="rounded-xl border border-border bg-surface-elevated p-5 shadow-sm dark:border-border-dark dark:bg-surface-elevated-dark">
@@ -20,16 +31,18 @@ export function FGInput({ og, fg, onFGChange }: FGInputProps) {
       </Text>
 
       <View className="flex-row gap-4">
-        {/* OG display (read-only from session) */}
+        {/* OG input */}
         <View className="flex-1">
-          <Text className="mb-2 text-sm font-medium text-text-secondary dark:text-text-secondary-dark">
-            OG
-          </Text>
-          <View className="rounded-lg border border-border-subtle bg-surface px-4 py-3 dark:border-border-subtle-dark dark:bg-surface-dark">
-            <Text className="text-text-secondary dark:text-text-secondary-dark">
-              {og ? og.toFixed(3) : '-'}
-            </Text>
-          </View>
+          <NumberInput
+            label="OG"
+            value={faktiskOG}
+            onChange={onOGChange}
+            placeholder={calculatedOG?.toFixed(3) || ''}
+            min={1}
+            max={1.2}
+            decimals={3}
+            status={isOGOverridden ? 'warning' : 'default'}
+          />
         </View>
 
         {/* FG input */}

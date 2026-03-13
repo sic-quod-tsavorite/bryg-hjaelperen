@@ -105,6 +105,7 @@ export default function LogTab() {
     setStil,
     setNavn,
     setBeskrivelse,
+    setFaktiskOG,
     setFaktiskFG,
     addPhoto,
     removePhoto,
@@ -115,8 +116,6 @@ export default function LogTab() {
   } = useSessionStore();
 
   const [editingEntryId, setEditingEntryId] = useState<string | null>(null);
-
-  const displayOG = session.faktiskOG ?? session.beregnetOG;
 
   const reversedEntries = useMemo(() => {
     return [...session.logIndlaeg].reverse();
@@ -190,8 +189,10 @@ export default function LogTab() {
 
         <SectionHeader title="Målinger" icon="analytics-outline" />
         <FGInput
-          og={displayOG}
+          calculatedOG={session.beregnetOG}
+          faktiskOG={session.faktiskOG}
           fg={session.faktiskFG}
+          onOGChange={setFaktiskOG}
           onFGChange={setFaktiskFG}
         />
 
