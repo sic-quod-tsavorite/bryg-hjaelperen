@@ -11,6 +11,7 @@ interface NumberInputProps {
   max?: number;
   decimals?: number;
   className?: string;
+  status?: 'default' | 'warning' | 'error';
 }
 
 export function NumberInput({
@@ -23,6 +24,7 @@ export function NumberInput({
   max,
   decimals: _decimals = 0,
   className = '',
+  status = 'default',
 }: NumberInputProps) {
   const [localText, setLocalText] = useState(
     value !== null ? value.toString() : ''
@@ -67,6 +69,18 @@ export function NumberInput({
     onChange(num);
   };
 
+  // Determine colors based on status
+  let textColorClass = 'text-text-primary dark:text-text-primary-dark';
+  let borderClass = 'border-border dark:border-border-dark';
+
+  if (status === 'warning') {
+    textColorClass = 'text-warning';
+    borderClass = 'border-warning';
+  } else if (status === 'error') {
+    textColorClass = 'text-error';
+    borderClass = 'border-error';
+  }
+
   return (
     <View className={`${className}`}>
       <Text className="mb-2 text-sm font-medium text-text-secondary dark:text-text-secondary-dark">
@@ -74,7 +88,7 @@ export function NumberInput({
       </Text>
       <View className="relative">
         <TextInput
-          className={`rounded-lg border border-border bg-surface-elevated py-3 text-text-primary dark:border-border-dark dark:bg-surface-elevated-dark dark:text-text-primary-dark ${unit ? 'pl-3 pr-10' : 'px-4'}`}
+          className={`rounded-lg border bg-surface-elevated py-3 ${textColorClass} ${borderClass} dark:bg-surface-elevated-dark ${unit ? 'pl-3 pr-10' : 'px-4'}`}
           value={localText}
           onChangeText={handleChange}
           onFocus={() => setIsFocused(true)}
